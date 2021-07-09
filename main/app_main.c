@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-07-08 06:18:59
+ * @LastEditTime: 2021-07-08 12:18:07
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /github/esp8266_freertos/main/app_main.c
+ */
 /* Hello World Example
 
    This example code is in the Public Domain (or CC0 licensed, at your option.)
@@ -11,28 +19,32 @@
 #include "freertos/task.h"
 #include "esp_system.h"
 #include "esp_spi_flash.h"
-
-
+#include <wangyonglin/httpd.h>
+#include <wangyonglin/wifi.h>
+#include "nvs_flash.h"
+#include "esp_event_loop.h"
+#include "nvs_flash.h"
+#include "string.h"
+#include <wangyonglin/button.h>
+#include <esp_log.h>
+static const char *TAG = "main";
+void button_handler(int8_t id, void *ctx)
+{
+    if (id == 2)
+    {
+        ESP_LOGI(TAG, "长长长");
+    }
+}
 void app_main()
 {
-    printf("Hello world!\n");
-
-    /* Print chip information */
-    esp_chip_info_t chip_info;
-    esp_chip_info(&chip_info);
-    printf("This is ESP8266 chip with %d CPU cores, WiFi, ",
-            chip_info.cores);
-
-    printf("silicon revision %d, ", chip_info.revision);
-
-    printf("%dMB %s flash\n", spi_flash_get_chip_size() / (1024 * 1024),
-            (chip_info.features & CHIP_FEATURE_EMB_FLASH) ? "embedded" : "external");
-
-    for (int i = 10; i >= 0; i--) {
-        printf("Restarting in %d seconds...\n", i);
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
+    // Initialize NVS
+    esp_err_t ret = nvs_flash_init();
+    if (ret == ESP_ERR_NVS_NO_FREE_PAGES)
+    {
+        ESP_ERROR_CHECK(nvs_flash_erase());
+        ret = nvs_flash_init();
     }
-    printf("Restarting now.\n");
-    fflush(stdout);
-    esp_restart();
+    ESP_ERROR_CHECK(ret);
+    wang_button_set(button_handler);
+    initialise_wifi();
 }

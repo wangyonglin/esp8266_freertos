@@ -1,5 +1,6 @@
 /root/esp/github/esp8266_freertos/build/app_update/libapp_update.a
  /root/esp/github/esp8266_freertos/build/bootloader_support/libbootloader_support.a
+ /root/esp/github/esp8266_freertos/build/button/libbutton.a
  /root/esp/github/esp8266_freertos/build/coap/libcoap.a
  /root/esp/github/esp8266_freertos/build/console/libconsole.a
  /root/esp/github/esp8266_freertos/build/esp-tls/libesp-tls.a
@@ -13,10 +14,12 @@
  /root/esp/github/esp8266_freertos/build/esp_https_ota/libesp_https_ota.a
  /root/esp/github/esp8266_freertos/build/esp_ringbuf/libesp_ringbuf.a
  /root/esp/github/esp8266_freertos/build/fatfs/libfatfs.a
+ /root/esp/github/esp8266_freertos/build/flash/libflash.a
  /root/esp/github/esp8266_freertos/build/freemodbus/libfreemodbus.a
  /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a
  /root/esp/github/esp8266_freertos/build/heap/libheap.a
  /root/esp/github/esp8266_freertos/build/http_parser/libhttp_parser.a
+ /root/esp/github/esp8266_freertos/build/httpd/libhttpd.a
  /root/esp/github/esp8266_freertos/build/jsmn/libjsmn.a
  /root/esp/github/esp8266_freertos/build/json/libjson.a
  /root/esp/github/esp8266_freertos/build/libsodium/liblibsodium.a
@@ -39,5 +42,6 @@
  /root/esp/github/esp8266_freertos/build/tcpip_adapter/libtcpip_adapter.a
  /root/esp/github/esp8266_freertos/build/vfs/libvfs.a
  /root/esp/github/esp8266_freertos/build/wear_levelling/libwear_levelling.a
+ /root/esp/github/esp8266_freertos/build/wifi/libwifi.a
  /root/esp/github/esp8266_freertos/build/wifi_provisioning/libwifi_provisioning.a
  /root/esp/github/esp8266_freertos/build/wpa_supplicant/libwpa_supplicant.a

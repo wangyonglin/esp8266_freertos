@@ -33,7 +33,53 @@ app_main.o: /root/esp/github/esp8266_freertos/main/app_main.c \
  /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_system.h \
  /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_idf_version.h \
  /root/esp/ESP8266_RTOS_SDK/components/spi_flash/include/esp_spi_flash.h \
- /root/esp/ESP8266_RTOS_SDK/components/spi_flash/include/spi_flash.h
+ /root/esp/ESP8266_RTOS_SDK/components/spi_flash/include/spi_flash.h \
+ /root/esp/github/esp8266_freertos/components/httpd/include/wangyonglin/httpd.h \
+ /root/esp/github/esp8266_freertos/components/wifi/include/wangyonglin/wifi.h \
+ /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/event_groups.h \
+ /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/timers.h \
+ /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/task.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_wifi.h \
+ /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/queue.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_wifi_types.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_interface.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp_event/include/esp_event_base.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp_event/include/esp_event.h \
+ /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/semphr.h \
+ /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/queue.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp_event/include/esp_event_base.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp_event/include/esp_event_legacy.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_wifi_types.h \
+ /root/esp/ESP8266_RTOS_SDK/components/tcpip_adapter/include/tcpip_adapter.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/ip_addr.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/opt.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/port/esp8266/include/lwipopts.h \
+ /root/esp/ESP8266_RTOS_SDK/components/newlib/platform_include/time.h \
+ /root/esp/ESP8266_RTOS_SDK/components/newlib/platform_include/sys/time.h \
+ /root/esp/ESP8266_RTOS_SDK/components/vfs/include/sys/ioctl.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp_common/include/esp_task.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_libc.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/rom/ets_sys.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/include/apps/sntp/sntp.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/port/esp8266/include/netif/dhcp_state.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/debug.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/arch.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/port/esp8266/include/arch/cc.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/port/esp8266/include/arch/sys_arch.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/port/esp8266/include/arch/vfs_lwip.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/def.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/ip4_addr.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/ip6_addr.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/def.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/include/apps/dhcpserver/dhcpserver.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp_http_server/include/esp_http_server.h \
+ /root/esp/ESP8266_RTOS_SDK/components/http_parser/include/http_parser.h \
+ /root/esp/ESP8266_RTOS_SDK/components/nvs_flash/include/nvs_flash.h \
+ /root/esp/ESP8266_RTOS_SDK/components/nvs_flash/include/nvs.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp_event/include/esp_event_loop.h \
+ /root/esp/github/esp8266_freertos/components/button/include/wangyonglin/button.h \
+ /root/esp/ESP8266_RTOS_SDK/components/log/include/esp_log.h \
+ /root/esp/ESP8266_RTOS_SDK/components/log/include/esp_log_internal.h
 
 /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/FreeRTOS.h:
 
@@ -104,4 +150,96 @@ app_main.o: /root/esp/github/esp8266_freertos/main/app_main.c \
 /root/esp/ESP8266_RTOS_SDK/components/spi_flash/include/esp_spi_flash.h:
 
 /root/esp/ESP8266_RTOS_SDK/components/spi_flash/include/spi_flash.h:
+
+/root/esp/github/esp8266_freertos/components/httpd/include/wangyonglin/httpd.h:
+
+/root/esp/github/esp8266_freertos/components/wifi/include/wangyonglin/wifi.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/event_groups.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/timers.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/task.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_wifi.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/queue.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_wifi_types.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_interface.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/esp_event/include/esp_event_base.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/esp_event/include/esp_event.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/semphr.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/queue.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/esp_event/include/esp_event_base.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/esp_event/include/esp_event_legacy.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_wifi_types.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/tcpip_adapter/include/tcpip_adapter.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/ip_addr.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/opt.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/port/esp8266/include/lwipopts.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/newlib/platform_include/time.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/newlib/platform_include/sys/time.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/vfs/include/sys/ioctl.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/esp_common/include/esp_task.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_libc.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/esp8266/include/rom/ets_sys.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/include/apps/sntp/sntp.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/port/esp8266/include/netif/dhcp_state.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/debug.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/arch.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/port/esp8266/include/arch/cc.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/port/esp8266/include/arch/sys_arch.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/port/esp8266/include/arch/vfs_lwip.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/def.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/ip4_addr.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/ip6_addr.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/def.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/include/apps/dhcpserver/dhcpserver.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/esp_http_server/include/esp_http_server.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/http_parser/include/http_parser.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/nvs_flash/include/nvs_flash.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/nvs_flash/include/nvs.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/esp_event/include/esp_event_loop.h:
+
+/root/esp/github/esp8266_freertos/components/button/include/wangyonglin/button.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/log/include/esp_log.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/log/include/esp_log_internal.h:
 /root/esp/github/esp8266_freertos/main/./app_main.c:

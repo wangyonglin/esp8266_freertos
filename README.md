@@ -1,5 +1,12 @@
-# Hello World Example
+#ifndef WANGYONGLIN_WIFI_H
+#define WANGYONGLIN_WIFI_H
 
-Starts a FreeRTOS task to print "Hello World"
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
-See the README.md file in the upper level 'examples' directory for more information about examples.
+#ifdef __cplusplus
+}
+#endif
+#endif

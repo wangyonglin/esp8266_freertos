@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>傻狗物联WIFI配网</title>
+  <meta charset='UTF-8'>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+</head>
+<style>
+  html,
+  body,
+  body * {
+    margin: 0;
+    padding: 0;
+    outline: none;
+  }
+
+  html,
+  body {
+    background: #1aceff;
+    color: #fff;
+    font-size: 14px;
+  }
+
+  .box {
+    max-width: 400px;
+    min-width: 300px;
+    margin: 0 auto;
+  }
+
+  .tit {
+    font-size: 26px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+    line-height: 1;
+  }
+
+  .desc {
+    font-size: 12px;
+    text-align: center;
+    line-height: 2;
+    color: #f0f0f0;
+    margin-bottom: 10px;
+  }
+
+  .sm {
+    font-size: 14px;
+    color: #fefefe;
+    margin: 0;
+    font-weight: 400;
+  }
+
+  .wifi-b {
+    background: #fff;
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin: 20px;
+    color: #333;
+    padding: 0;
+    overflow: hidden;
+    margin-bottom: 80px;
+  }
+
+  .wifi-li {
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #efefef;
+    line-height: 3;
+    padding: 0 15px;
+  }
+
+  .wifi-li:first-child {
+    border: 0;
+  }
+
+  .wifi-li .sname {
+    max-width: 80%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    align-items: center;
+  }
+
+  .wifi-li .right {
+    display: flex;
+    align-items: center;
+  }
+
+  .wifi-li:active,
+  .wifi-li:hover,
+  .wifi-li:focus {
+    background: #e9faff;
+    color: #2196F3;
+  }
+
+  .ico {
+    font-style: normal;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .msg-box {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, .7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .msg {
+    width: 300px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    color: #333;
+  }
+
+  .ipt-box {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #2196F3;
+    margin-bottom: 10px;
+  }
+
+  .ipt-box>input {
+    flex: 1;
+    border: none;
+    background: none;
+    line-height: 40px;
+  }
+
+  .label {
+    margin: 0 10px;
+    line-height: 40px;
+  }
+
+  .ipt-box.s {
+    margin: 0;
+  }
+
+  .msg-tit {
+    font-size: 16px;
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+    line-height: 20px;
+    height: 40px;
+    position: relative;
+  }
+
+  #submit {
+    background: #2196F3;
+    color: #fff;
+    padding: 0;
+    font-size: 16px;
+  }
+
+  .alert-content {
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  #alertBox .s1 {
+    border: none;
+    margin: 0;
+  }
+
+  #alertBox .okbtn {
+    color: #419fff;
+    font-weight: 100;
+    font-size: 16px;
+  }
+
+  #alertBox .msg {
+    padding-bottom: 10px;
+  }
+
+  #submit.disabled {
+    background: #eee;
+    color: #c0b9b9;
+    cursor: no-drop;
+    border-color: #eee;
+  }
+
+  #close {
+    position: absolute;
+    right: -14px;
+    top: -14px;
+    font-size: 30px;
+    display: block;
+    line-height: 25px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+
+  #footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 60px;
+    background: rgba(0, 0, 0, .3);
+    text-align: center;
+  }
+
+  .scan {
+    font-size: 14px;
+    color: #1aceff;
+    background: #fff;
+    width: 6em;
+    border-radius: 4px;
+    margin: 13px auto 0;
+    line-height: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+
+  .scan.s-disabled {
+    background: #eee;
+    color: #c0b9b9;
+    cursor: no-drop;
+  }
+
+  .lock {
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAB5ElEQVRYR+3XO2gVQRQG4C+ixEYsUlj7BsEiCsHCzkJ8gqSxsDSN6bTwgWBEYlDQSrHQUrGzUaOFltoIUUIg+EKwsLBMCpFYhCOjJGv23tnNXi6KB5Y77D3zn3/O/jPnTI8uW0+X46tDYAUOYQi78A1v8Bw38KPKoqoSGMB9bCgJMoEj+JxLogqBHXiJXtzFCD5iGw7gNPrwBf34mkMil0D4TaVgEejqEuDr8CQFj9/9TRLYg2d4jchEmW3ENFYlsjFuabkZuIaTOIXrbTBDI0dxAreaIvAgieswHrYBPY9LuJh00kgGnmIv9iHGrewMxnAFMa5FYE0Ktjl9z2OI73sPH9pg7kZo5kXSzRzeJ4HOFucupYFNeISt7dhX/P8tDhYXUCSwEnGYbK8Inus+iZ0LT8sigdi7j3PRavrFoTX+a26RwFlcrgmcO+1cEulP/yKBOF4v5CLV9Fu0Pf96AluwFq8qZKOxDHzH6vRET5Br/wn8OxmI3i/qftSNmVwBFKvkcrdhFKcQ4mC3CFSI+9u1MQ3UCR5zWhI4jtt1kTPnxX3iTlkxWo93iLLcCQvhxun5qYxAvI9qNdqJ6Ih+cRF2WVc8jHiiJVtuNqIliwtMXNtuFheW25Z3KCF/9gMdC1QGPA9czWEhdOxqMgAAAABJRU5ErkJggg==') no-repeat center center /cover;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    margin-right: 5px;
+  }
+
+  #loading {
+    position: fixed;
+    z-index: 99999;
+    width: 30px;
+    height: 30px;
+    background: #9beccd;
+    border-radius: 50px;
+    animation: loading 1.5s infinite linear;
+    left: 50%;
+    top: 50%;
+    margin-left: -15px;
+    margin-top: -15px;
+  }
+
+  #loading:after {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-top: 10px solid #ffee07;
+    border-bottom: 10px solid #ffee07;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-radius: 50px;
+    content: '';
+    top: -20px;
+    left: -20px;
+    animation: loading_after 1.5s infinite linear;
+  }
+
+  @keyframes loading {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    50% {
+      transform: rotate(180deg);
+      background: #ffee07;
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes loading_after {
+    0% {
+      border-top: 10px solid #ffee07;
+      border-bottom: 10px solid #ffee07;
+    }
+
+    50% {
+      border-top: 10px solid #9beccd;
+      border-bottom: 10px solid #9beccd;
+    }
+
+    100% {
+      border-top: 10px solid #ffee07;
+      border-bottom: 10px solid #ffee07;
+    }
+  }
+</style>
+
+<body>
+  <div class="box">
+    <div class="tit">傻狗物联</div>
+    <div class="desc">---> wx:yyxbc2010 <----</div>
+        <div class="tit sm">请选择一个WIFI</div>
+        <div class="wifi-b" id="wifiList">
+          <!--WIFI列表-->
+        </div>
+    </div>
+    <div id="footer">
+      <div class="scan" onclick="scanWifi()">扫描WIFI</div>
+    </div>
+    <div id="loading" style="display:none"></div>
+    <!--弹窗-->
+    <div class="msg-box" id="msgBox" style="display:none">
+      <div class="msg">
+        <div class="msg-tit">请填写以下信息<span id="close" onclick="msgBox('hide')">×</span></div>
+        <div class="ipt-box">
+          <span class="label">SSID</span>
+          <input type="text" id="ssid" value="" placeholder="SSID" readonly="readonly"/>
+        </div>
+        <div class="ipt-box" id="wifiLock">
+          <span class="label">密码</span>
+          <input type="text" id="passwd" value="" placeholder="请输入WIFI密码" />
+        </div>
+
+        <div class="ipt-box s">
+          <input type="button" id="submit" value="确&emsp;定" onclick="submit()" />
+        </div>
+      </div>
+    </div>
+    <div class="msg-box" id="alertBox" style="display:none;z-index:999999;">
+      <div class="msg">
+        <div class="msg-tit">系统提示</div>
+        <div class="alert-content" id="abContent">我是提示消息</div>
+        <div class="ipt-box s1">
+          <input type="button" class="okbtn" id="okBtn" value="确定" onclick="" />
+        </div>
+      </div>
+    </div>
+</body>
+<script type="text/javascript">
+  var wifissid = "";
+  var wifiLock = true;  //WIFI是否有密码
+  function loading(type, timeout, step) {
+    if (type == 'hide') {
+      document.getElementById("loading").style = "display:none";
+      if (!step) {
+        document.getElementsByClassName("scan")[0].innerHTML = "扫描WIFI";
+        document.getElementsByClassName("scan")[0].className = "scan";
+        document.getElementsByClassName("sm")[0].innerHTML = "请选择一个WIFI";
+      }
+      document.getElementById("submit").className = "";
+      document.getElementsByClassName("s")[0].style = "";
+    } else if (type == 'show') {
+      document.getElementById("loading").style = "";
+      if (!step) {
+        document.getElementsByClassName("scan")[0].innerHTML = "正在扫描...";
+        document.getElementsByClassName("scan")[0].className = "scan s-disabled";
+        document.getElementsByClassName("sm")[0].innerHTML = "正在扫描WIFI...";
+      } else {
+        document.getElementById("submit").className = "disabled";
+        document.getElementsByClassName("s")[0].style = "border-color:#eee";
+      }
+      if (timeout > 0) {
+        setTimeout(function () {
+          loading('hide');
+        }, timeout)
+      }
+    }
+  }
+
+  function selectSSID(ssid, state) {
+    wifissid = ssid;
+    wifiLock = state;
+    msgBox('show');
+  }
+  function alertBox(msg, funcName, hide) {
+    document.getElementById("abContent").innerHTML = msg;
+    document.getElementById("okBtn").setAttribute("onclick", funcName ? funcName : 'hideAlertBox()');
+    if (hide) {
+      document.getElementById("alertBox").style = "display:none;z-index:999999;";
+    } else {
+      document.getElementById("alertBox").style = "z-index:999999;";
+    }
+  }
+  function hideAlertBox() {
+    document.getElementById("alertBox").style = "display:none;z-index:999999;";
+  }
+  function msgBox(type) {
+    if (wifiLock) {
+      document.getElementById("wifiLock").style = "display:block";
+    } else {
+      document.getElementById("wifiLock").style = "display:none";
+    }
+    if (type == 'hide') {
+      document.getElementById("msgBox").style = "display:none";
+      document.getElementById("passwd").value = "";
+      document.getElementById("ssid").value = "";
+    } else {
+      document.getElementById("ssid").value = wifissid;
+      document.getElementById("msgBox").style = "";
+      document.getElementById("submit").className = "";
+      document.getElementsByClassName("s")[0].style = "";
+    }
+  }
+  function scanWifi() {
+    //let data = '{"code":200,"message":"ok","wifi":[{"ssid":"1111111111111111","channel":"channel1","authmode":"1"},{"ssid":"111","channel":"channel1","authmode":"0"}]}';
+    if (document.getElementsByClassName("s-disabled")[0]) {
+      //alertBox('正在扫描中请不要一直点');
+      return
+    }
+    loading('show', 30000) //加载动画30秒超时
+    get('/wifi', '', function (data) {
+      loading('hide');
+      let obj = JSON.parse(data);
+      if (obj.code !== 200) {
+        document.getElementById("wifiList").innerHTML = "";
+        document.getElementsByClassName("sm")[0].innerHTML = (obj.message || "获取WIFI列表错误");
+        return
+      }
+
+      document.getElementsByClassName("sm")[0].innerHTML = "请选择一个WIFI";
+
+      let arr = obj.wifi;
+      let html = '';
+      for (let i in arr) {
+        let wifi = arr[i];
+        let lock = wifi.authmode != '0' ? '<i class="lock"></i>' : '';  //是否带锁
+        let type = wifi.authmode != '0' ? true : false;
+        html += '<div class="wifi-li" onclick="selectSSID(\'' + wifi.ssid + '\',' + type + ')">' +
+          '<span class="sname">' + wifi.ssid + '</span><span class="right">' + lock + '<i class="ico">&raquo;</i></span>' +
+          '</div>';
+      }
+      document.getElementById("wifiList").innerHTML = html;
+    });
+  }
+
+  function get(url, data, callback) {
+    var xhr = new XMLHttpRequest();
+    if (data) {
+      url = url + '?' + data;
+    }
+    xhr.timeout = 30000; // 超时时间，单位是毫秒
+    xhr.ontimeout = function () {
+      loading('hide');
+      alertBox('请求超时');
+      return;
+    }
+    xhr.open('get', url);
+    //注册回调函数
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        //调用传递的回调函数
+        callback(xhr.responseText);
+      }
+    }
+    xhr.send(null);
+  }
+
+  function post(url, data, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.timeout = 30000; // 超时时间，单位是毫秒
+    xhr.ontimeout = function () {
+      msgBox('hide');
+      loading('hide');
+      alertBox('请求超时');
+      return;
+    }
+    xhr.open('post', url);
+    //设置请求头(post有数据发送才需要设置请求头)
+    //判断是否有数据发送
+    if (data) {
+      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+    }
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        callback(xhr.responseText);
+      } else if (xhr.status != 200) {
+        loading('hide');
+        callback('error');
+      }
+    }
+    xhr.send(data);
+  }
+
+  function submit() {
+    if (document.getElementById("submit").className == 'disabled') {
+      //alertBox('请休息一会不要一直点');
+      return
+    }
+    var passwd = document.getElementById("passwd").value;
+    var ssid = document.getElementById("ssid").value;
+    if (!wifissid) {
+      msgBox('hide');
+      alertBox('请从WIFI列表选择一个WIFI');
+      return;
+    }
+    if (!ssid) {
+      alertBox('请输入SSID');
+      document.getElementById("ssid").focus();
+      return;
+    }
+    //点确定提交
+    //console.log("SSID->",wifissid,"WIWI密码->",passwd,"点灯密钥",authkey);
+    let params = 'ssid=' + wifissid + '&passwd=' + passwd;
+    loading('show', 0, 2);
+    post('/config', params, function (data) {
+      loading('hide');
+      if (data == 'error') {
+        msgBox('hide'); //隐藏弹窗
+        alertBox("配网失败请重试");
+        return
+      }
+      let obj = JSON.parse(data);
+      if (obj.code == 200) {
+        msgBox('hide'); //配网成功
+        document.getElementById("wifiList").innerHTML = "";
+        document.getElementById("footer").style = "display:none;";
+        document.getElementsByClassName("sm")[0].innerHTML = (obj.message);
+        alertBox(obj.message);
+      } else {
+        msgBox('hide'); //隐藏弹窗
+        alertBox("配网失败请重试");
+      }
+    });
+
+  }
+  scanWifi();
+</script>
+
+</html>
