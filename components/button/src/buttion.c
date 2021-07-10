@@ -100,7 +100,6 @@ esp_err_t alink_key_scan(TickType_t ticks_to_wait)
 
 void key_trigger(void *arg)
 {
-    wang_button_t *btn = (wang_button_t *)arg;
     esp_err_t ret = 0;
     KeyInit(KEY_GPIO);
 
@@ -114,12 +113,11 @@ void key_trigger(void *arg)
         {
         case KEY_SHORT_PRESS:
             printf("短按触发回调 ... \r\n");
-           // btn->event_cb_t(KEY_SHORT_PRESS,NULL);
+
             break;
 
         case KEY_LONG_PRESS:
             printf("长按触发回调 ... \r\n");
-           // btn->event_cb_t(KEY_LONG_PRESS,NULL);
             wang_flash_bit_set(0);
             break;
 
@@ -131,9 +129,7 @@ void key_trigger(void *arg)
     vTaskDelete(NULL);
 }
 
-void wang_button_set(void (*event_cb_t)(int8_t id, void *ctx))
+void wang_button_bit()
 {
-    wang_button_t btn;
-    btn.event_cb_t = event_cb_t;
-    xTaskCreate(key_trigger, "key_trigger", 1024 * 3, &btn, 10, NULL);
+    xTaskCreate(key_trigger, "key_trigger", 1024 * 3,NULL, 10, NULL);
 }

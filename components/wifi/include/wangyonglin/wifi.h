@@ -36,6 +36,7 @@ extern "C"
     void initialise_wifi(void);
     esp_err_t wang_ap_start(struct wang_handle *handle);
     esp_err_t wang_sta_scan(struct wang_handle *handle);
+    char* wang_ap_default(void);
 #ifdef __cplusplus
 }
 #endif

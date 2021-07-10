@@ -28,13 +28,7 @@
 #include <wangyonglin/button.h>
 #include <esp_log.h>
 static const char *TAG = "main";
-void button_handler(int8_t id, void *ctx)
-{
-    if (id == 2)
-    {
-        ESP_LOGI(TAG, "长长长");
-    }
-}
+
 void app_main()
 {
     // Initialize NVS
@@ -45,6 +39,7 @@ void app_main()
         ret = nvs_flash_init();
     }
     ESP_ERROR_CHECK(ret);
-    wang_button_set(button_handler);
+
+    wang_button_bit();
     initialise_wifi();
 }

@@ -6,13 +6,7 @@ extern "C"
 {
 #endif
 
-struct wang_button
-{
-   void(*event_cb_t)(int8_t id,void *ctx);
-};
-typedef struct wang_button wang_button_t;
-
-void wang_button_set(void (*event_cb_t)(int8_t id, void *ctx));
+void wang_button_bit();
 #ifdef __cplusplus
 }
 #endif
