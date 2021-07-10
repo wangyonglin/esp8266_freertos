@@ -23,8 +23,8 @@ esp_err_t wang_ap_start(struct wang_handle *handle)
     esp_err_t err = ESP_OK;
     char *out = wang_ap_default();
     ESP_LOGE(TAG, out);
-    memcpy( cfg.ap.ssid,out,strlen(out));
-    cfg.ap.ssid_len=strlen(out);
+    memcpy(cfg.ap.ssid, out, strlen(out));
+    cfg.ap.ssid_len = strlen(out);
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_AP));
     ESP_ERROR_CHECK(esp_wifi_set_config(ESP_IF_WIFI_AP, &cfg));
     if (esp_wifi_get_state() == WIFI_STATE_START)
@@ -32,6 +32,7 @@ esp_err_t wang_ap_start(struct wang_handle *handle)
         ESP_ERROR_CHECK(esp_wifi_stop());
     }
     ESP_ERROR_CHECK(esp_wifi_start());
+    ESP_ERROR_CHECK(wang_adapter_default());
     return err;
 }
 
@@ -43,4 +44,18 @@ char *wang_ap_default(void)
     get_chip_id(&id);
     sprintf(out, "ESP%04X", id);
     return out;
+}
+
+esp_err_t wang_adapter_default(void)
+{
+    tcpip_adapter_ip_info_t local_ip;
+    esp_err_t err = ESP_OK;
+    err = tcpip_adapter_get_ip_info(TCPIP_ADAPTER_IF_AP, &local_ip);
+    tcpip_adapter_dhcps_stop(TCPIP_ADAPTER_IF_AP);
+    IP4_ADDR(&local_ip.ip, 192, 168, 1, 1);
+    IP4_ADDR(&local_ip.gw, 192, 168, 1, 1);
+    IP4_ADDR(&local_ip.netmask, 255, 255, 255, 0);
+    err = tcpip_adapter_set_ip_info(TCPIP_ADAPTER_IF_AP, &local_ip);
+    tcpip_adapter_dhcps_start(TCPIP_ADAPTER_IF_AP);
+    return err;
 }
