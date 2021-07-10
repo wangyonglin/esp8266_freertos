@@ -10,7 +10,7 @@
 #include "lwip/err.h"
 #include "lwip/sys.h"
 #include <wangyonglin/wifi.h>
-static const char *TAG = "wifi softAP";
+static const char *TAG = "wifi sta";
 char *wang_ap_default(void);
 static wifi_config_t cfg = {
     .ap.ssid = "wangyonglin",

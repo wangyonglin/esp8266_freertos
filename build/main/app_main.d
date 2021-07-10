@@ -79,7 +79,8 @@ app_main.o: /root/esp/github/esp8266_freertos/main/app_main.c \
  /root/esp/ESP8266_RTOS_SDK/components/esp_event/include/esp_event_loop.h \
  /root/esp/github/esp8266_freertos/components/button/include/wangyonglin/button.h \
  /root/esp/ESP8266_RTOS_SDK/components/log/include/esp_log.h \
- /root/esp/ESP8266_RTOS_SDK/components/log/include/esp_log_internal.h
+ /root/esp/ESP8266_RTOS_SDK/components/log/include/esp_log_internal.h \
+ /root/esp/github/esp8266_freertos/main/include/app.h
 
 /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/FreeRTOS.h:
 
@@ -242,4 +243,6 @@ app_main.o: /root/esp/github/esp8266_freertos/main/app_main.c \
 /root/esp/ESP8266_RTOS_SDK/components/log/include/esp_log.h:
 
 /root/esp/ESP8266_RTOS_SDK/components/log/include/esp_log_internal.h:
+
+/root/esp/github/esp8266_freertos/main/include/app.h:
 /root/esp/github/esp8266_freertos/main/./app_main.c:

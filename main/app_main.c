@@ -1,19 +1,13 @@
-/*
- * @Author: your name
- * @Date: 2021-07-08 06:18:59
- * @LastEditTime: 2021-07-08 12:18:07
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /github/esp8266_freertos/main/app_main.c
+/**
+ * @file app_main.c
+ * @author 王永林 (admin@wangyonglin.com)
+ * @brief 
+ * @version 1.0.0
+ * @date 2021年07月10日
+ * 
+ * @copyright Copyright (c) 1988-2021 wangyonglin.com. All rights reserved.
+ * 
  */
-/* Hello World Example
-
-   This example code is in the Public Domain (or CC0 licensed, at your option.)
-
-   Unless required by applicable law or agreed to in writing, this
-   software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
-   CONDITIONS OF ANY KIND, either express or implied.
-*/
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -27,10 +21,22 @@
 #include "string.h"
 #include <wangyonglin/button.h>
 #include <esp_log.h>
+#include <app.h>
 static const char *TAG = "main";
-
+void sta_ok(int id, void *ctx)
+{
+    ESP_LOGI(TAG, "sta_ok");
+     mqtt_app_start();
+}
+void sta_fail(int id, void *ctx)
+{
+    ESP_LOGI(TAG, "sta_fail");
+}
 void app_main()
 {
+    ESP_LOGI(TAG, "[APP] Startup..");
+    ESP_LOGI(TAG, "[APP] Free memory: %d bytes", esp_get_free_heap_size());
+    ESP_LOGI(TAG, "[APP] IDF version: %s", esp_get_idf_version());
     // Initialize NVS
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES)
@@ -41,5 +47,7 @@ void app_main()
     ESP_ERROR_CHECK(ret);
 
     wang_button_bit();
+    wang_sta_ok(sta_ok, NULL);
+    wang_sta_fail(sta_fail, NULL);
     initialise_wifi();
 }

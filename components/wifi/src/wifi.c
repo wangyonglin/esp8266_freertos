@@ -50,6 +50,9 @@ void startup_callback(wang_startup_id_t id, struct wang_handle *handle, void *ct
         memcpy(buffer, ctx, len);
         wang_ap_start(handle);
         break;
+    case WANG_STA_GOT_IP:
+        ESP_LOGI(TAG, "WANG_STA_GOT_IP");
+        break;
     default:
         break;
     }
@@ -96,6 +99,8 @@ static esp_err_t event_handler(void *ctx, system_event_t *event)
         ESP_LOGI(TAG, "got ip:%s",
                  ip4addr_ntoa(&event->event_info.got_ip.ip_info.ip));
         xEventGroupSetBits(handle->wifi_event_group, WIFI_CONNECTED_BIT);
+        handle->startup(WANG_STA_GOT_IP, handle, NULL, 0);
+        handle->sta.ok(1, NULL);
         break;
     case SYSTEM_EVENT_AP_START:
         ESP_LOGI(TAG, "启动热点");
@@ -120,10 +125,9 @@ static esp_err_t event_handler(void *ctx, system_event_t *event)
                  event->event_info.sta_disconnected.aid);
         break;
     case SYSTEM_EVENT_STA_DISCONNECTED:
-
-        ESP_LOGE(TAG, "Disconnect reason : %d", info->disconnected.reason);
-
-        //esp_wifi_connect();
+        ESP_LOGI(TAG, "路由断网");
+        handle->sta.fail(2, NULL);
+        esp_wifi_connect();
         //xEventGroupClearBits(config.wifi_event_group, WIFI_CONNECTED_BIT);
         break;
     case SYSTEM_EVENT_SCAN_DONE:
@@ -168,4 +172,13 @@ void wang_wifi_init(struct wang_handle *handle)
     handle->wifi_event_group = xEventGroupCreate();
     ESP_ERROR_CHECK(esp_event_loop_init(event_handler, handle));
     ESP_ERROR_CHECK(esp_event_handler_register(WIFI_EVENT, ESP_EVENT_ANY_ID, &wifi_event_handler, NULL));
+}
+
+void wang_sta_ok(void (*ok)(int id, void *ctx), void *ctx)
+{
+    handle.sta.ok = ok;
+}
+void wang_sta_fail(void (*fail)(int id, void *ctx), void *ctx)
+{
+    handle.sta.fail = fail;
 }
