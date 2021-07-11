@@ -1,15 +1,6 @@
-#include <string.h>
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "esp_system.h"
-#include "esp_wifi.h"
-#include "esp_event.h"
-#include "esp_log.h"
-#include "nvs_flash.h"
-
-#include "lwip/err.h"
-#include "lwip/sys.h"
+#include <wangyonglin/esp.h>
 #include <wangyonglin/wifi.h>
+#include <wangyonglin/adapter.h>
 static const char *TAG = "wifi sta";
 char *wang_ap_default(void);
 static wifi_config_t cfg = {
@@ -21,7 +12,7 @@ static wifi_config_t cfg = {
 esp_err_t wang_ap_start(struct wang_handle *handle)
 {
     esp_err_t err = ESP_OK;
-    char *out = wang_ap_default();
+    char *out = objChipId();
     ESP_LOGE(TAG, out);
     memcpy(cfg.ap.ssid, out, strlen(out));
     cfg.ap.ssid_len = strlen(out);
@@ -32,30 +23,9 @@ esp_err_t wang_ap_start(struct wang_handle *handle)
         ESP_ERROR_CHECK(esp_wifi_stop());
     }
     ESP_ERROR_CHECK(esp_wifi_start());
-    ESP_ERROR_CHECK(wang_adapter_default());
+    ESP_ERROR_CHECK(objAdapterInit());
     return err;
 }
 
-char *wang_ap_default(void)
-{
-    char *out = (char *)malloc(sizeof(char) * 32);
-    bzero(out, sizeof(char) * 32);
-    uint32_t id;
-    get_chip_id(&id);
-    sprintf(out, "ESP%04X", id);
-    return out;
-}
 
-esp_err_t wang_adapter_default(void)
-{
-    tcpip_adapter_ip_info_t local_ip;
-    esp_err_t err = ESP_OK;
-    err = tcpip_adapter_get_ip_info(TCPIP_ADAPTER_IF_AP, &local_ip);
-    tcpip_adapter_dhcps_stop(TCPIP_ADAPTER_IF_AP);
-    IP4_ADDR(&local_ip.ip, 192, 168, 1, 1);
-    IP4_ADDR(&local_ip.gw, 192, 168, 1, 1);
-    IP4_ADDR(&local_ip.netmask, 255, 255, 255, 0);
-    err = tcpip_adapter_set_ip_info(TCPIP_ADAPTER_IF_AP, &local_ip);
-    tcpip_adapter_dhcps_start(TCPIP_ADAPTER_IF_AP);
-    return err;
-}
+

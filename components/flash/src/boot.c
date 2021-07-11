@@ -8,7 +8,7 @@
 #include <cJSON.h>
 static const char *TAG = "FLASH-BIT";
 
-int16_t wang_flash_bit_get(void)
+int16_t objFlashBootGet(void)
 {
     nvs_handle handle;
     int16_t out;
@@ -38,7 +38,7 @@ int16_t wang_flash_bit_get(void)
     return out;
 }
 
-esp_err_t wang_flash_bit_set(int16_t val)
+esp_err_t objFlashBootSet(int16_t val)
 {
     nvs_handle handle;
     esp_err_t err = ESP_OK;

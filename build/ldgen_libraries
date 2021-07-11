@@ -3,6 +3,7 @@
  /root/esp/github/esp8266_freertos/build/button/libbutton.a
  /root/esp/github/esp8266_freertos/build/coap/libcoap.a
  /root/esp/github/esp8266_freertos/build/console/libconsole.a
+ /root/esp/github/esp8266_freertos/build/esp/libesp.a
  /root/esp/github/esp8266_freertos/build/esp-tls/libesp-tls.a
  /root/esp/github/esp8266_freertos/build/esp-wolfssl/libesp-wolfssl.a
  /root/esp/github/esp8266_freertos/build/esp8266/libesp8266.a
@@ -13,6 +14,7 @@
  /root/esp/github/esp8266_freertos/build/esp_http_server/libesp_http_server.a
  /root/esp/github/esp8266_freertos/build/esp_https_ota/libesp_https_ota.a
  /root/esp/github/esp8266_freertos/build/esp_ringbuf/libesp_ringbuf.a
+ /root/esp/github/esp8266_freertos/build/event/libevent.a
  /root/esp/github/esp8266_freertos/build/fatfs/libfatfs.a
  /root/esp/github/esp8266_freertos/build/flash/libflash.a
  /root/esp/github/esp8266_freertos/build/freemodbus/libfreemodbus.a
@@ -28,6 +30,7 @@
  /root/esp/github/esp8266_freertos/build/main/libmain.a
  /root/esp/github/esp8266_freertos/build/mbedtls/libmbedtls.a
  /root/esp/github/esp8266_freertos/build/mdns/libmdns.a
+ /root/esp/github/esp8266_freertos/build/message/libmessage.a
  /root/esp/github/esp8266_freertos/build/mqtt/libmqtt.a
  /root/esp/github/esp8266_freertos/build/newlib/libnewlib.a
  /root/esp/github/esp8266_freertos/build/nvs_flash/libnvs_flash.a

@@ -1,7 +1,8 @@
 #ifndef WANGYONGLIN_HTTPD_H
 #define WANGYONGLIN_HTTPD_H
+#include <wangyonglin/esp.h>
 #include <wangyonglin/wifi.h>
-#include <esp_http_server.h>
+
 #ifdef __cplusplus
 extern "C"
 {

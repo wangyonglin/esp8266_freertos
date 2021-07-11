@@ -75,8 +75,31 @@ src/wifi.o: /root/esp/github/esp8266_freertos/components/wifi/src/wifi.c \
  /root/esp/ESP8266_RTOS_SDK/components/nvs_flash/include/nvs.h \
  /root/esp/github/esp8266_freertos/components/wifi/include/wangyonglin/wifi.h \
  /root/esp/github/esp8266_freertos/components/httpd/include/wangyonglin/httpd.h \
+ /root/esp/github/esp8266_freertos/components/esp/include/wangyonglin/esp.h \
+ /root/esp/ESP8266_RTOS_SDK/components/tcpip_adapter/include/esp_netif.h \
+ /root/esp/ESP8266_RTOS_SDK/components/tcpip_adapter/include/tcpip_adapter.h \
+ /root/esp/ESP8266_RTOS_SDK/components/nvs_flash/include/nvs.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/err.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/sys.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/sockets.h \
+ /root/esp/ESP8266_RTOS_SDK/components/newlib/platform_include/sys/poll.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/netif.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/pbuf.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/stats.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/mem.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/memp.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/priv/memp_std.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/priv/memp_priv.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/priv/mem_priv.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/inet.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/errno.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/dns.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/netdb.h \
+ /root/esp/ESP8266_RTOS_SDK/components/mqtt/esp-mqtt/include/mqtt_client.h \
+ /root/esp/ESP8266_RTOS_SDK/components/mqtt/esp-mqtt/include/mqtt_config.h \
  /root/esp/ESP8266_RTOS_SDK/components/esp_http_server/include/esp_http_server.h \
  /root/esp/ESP8266_RTOS_SDK/components/http_parser/include/http_parser.h \
+ /root/esp/github/esp8266_freertos/components/esp/include/wangyonglin/io.h \
  /root/esp/ESP8266_RTOS_SDK/components/json/cJSON/cJSON.h \
  /root/esp/github/esp8266_freertos/components/flash/include/wangyonglin/flash.h
 
@@ -232,9 +255,55 @@ src/wifi.o: /root/esp/github/esp8266_freertos/components/wifi/src/wifi.c \
 
 /root/esp/github/esp8266_freertos/components/httpd/include/wangyonglin/httpd.h:
 
+/root/esp/github/esp8266_freertos/components/esp/include/wangyonglin/esp.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/tcpip_adapter/include/esp_netif.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/tcpip_adapter/include/tcpip_adapter.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/nvs_flash/include/nvs.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/err.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/sys.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/sockets.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/newlib/platform_include/sys/poll.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/netif.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/pbuf.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/stats.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/mem.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/memp.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/priv/memp_std.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/priv/memp_priv.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/priv/mem_priv.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/inet.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/errno.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/dns.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/netdb.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/mqtt/esp-mqtt/include/mqtt_client.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/mqtt/esp-mqtt/include/mqtt_config.h:
+
 /root/esp/ESP8266_RTOS_SDK/components/esp_http_server/include/esp_http_server.h:
 
 /root/esp/ESP8266_RTOS_SDK/components/http_parser/include/http_parser.h:
+
+/root/esp/github/esp8266_freertos/components/esp/include/wangyonglin/io.h:
 
 /root/esp/ESP8266_RTOS_SDK/components/json/cJSON/cJSON.h:
 

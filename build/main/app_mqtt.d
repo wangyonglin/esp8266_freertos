@@ -1,5 +1,5 @@
 app_mqtt.o: /root/esp/github/esp8266_freertos/main/app_mqtt.c \
- /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_wifi.h \
+ /root/esp/github/esp8266_freertos/components/esp/include/wangyonglin/esp.h \
  /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/FreeRTOS.h \
  /root/esp/ESP8266_RTOS_SDK/components/freertos/port/esp8266/include/freertos/FreeRTOSConfig.h \
  /root/esp/github/esp8266_freertos/build/include/sdkconfig.h \
@@ -29,18 +29,19 @@ app_mqtt.o: /root/esp/github/esp8266_freertos/main/app_mqtt.c \
  /root/esp/ESP8266_RTOS_SDK/components/heap/include/esp_heap_caps.h \
  /root/esp/ESP8266_RTOS_SDK/components/esp_common/include/esp_err.h \
  /root/esp/ESP8266_RTOS_SDK/components/heap/port/esp8266/include/esp_heap_config.h \
- /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/queue.h \
- /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_wifi_types.h \
- /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_interface.h \
- /root/esp/ESP8266_RTOS_SDK/components/esp_event/include/esp_event_base.h \
- /root/esp/ESP8266_RTOS_SDK/components/esp_event/include/esp_event.h \
  /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/task.h \
  /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/private/list.h \
  /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/semphr.h \
  /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/queue.h \
- /root/esp/ESP8266_RTOS_SDK/components/esp_event/include/esp_event_base.h \
- /root/esp/ESP8266_RTOS_SDK/components/esp_event/include/esp_event_legacy.h \
+ /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/queue.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_system.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_idf_version.h \
+ /root/esp/ESP8266_RTOS_SDK/components/log/include/esp_log.h \
+ /root/esp/ESP8266_RTOS_SDK/components/log/include/esp_log_internal.h \
+ /root/esp/ESP8266_RTOS_SDK/components/tcpip_adapter/include/esp_netif.h \
  /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_wifi_types.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_interface.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp_event/include/esp_event_base.h \
  /root/esp/ESP8266_RTOS_SDK/components/tcpip_adapter/include/tcpip_adapter.h \
  /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/ip_addr.h \
  /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/opt.h \
@@ -51,8 +52,6 @@ app_mqtt.o: /root/esp/github/esp8266_freertos/main/app_mqtt.c \
  /root/esp/ESP8266_RTOS_SDK/components/esp_common/include/esp_task.h \
  /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_libc.h \
  /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/rom/ets_sys.h \
- /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_system.h \
- /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_idf_version.h \
  /root/esp/ESP8266_RTOS_SDK/components/lwip/include/apps/sntp/sntp.h \
  /root/esp/ESP8266_RTOS_SDK/components/lwip/port/esp8266/include/netif/dhcp_state.h \
  /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/debug.h \
@@ -65,14 +64,20 @@ app_mqtt.o: /root/esp/github/esp8266_freertos/main/app_mqtt.c \
  /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/ip6_addr.h \
  /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/def.h \
  /root/esp/ESP8266_RTOS_SDK/components/lwip/include/apps/dhcpserver/dhcpserver.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp_event/include/esp_event.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp_event/include/esp_event_base.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp_event/include/esp_event_legacy.h \
+ /root/esp/ESP8266_RTOS_SDK/components/tcpip_adapter/include/tcpip_adapter.h \
+ /root/esp/ESP8266_RTOS_SDK/components/nvs_flash/include/nvs.h \
  /root/esp/ESP8266_RTOS_SDK/components/nvs_flash/include/nvs_flash.h \
  /root/esp/ESP8266_RTOS_SDK/components/nvs_flash/include/nvs.h \
- /root/esp/ESP8266_RTOS_SDK/components/tcpip_adapter/include/esp_netif.h \
- /root/esp/ESP8266_RTOS_SDK/components/tcpip_adapter/include/tcpip_adapter.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_wifi.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_wifi_types.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/err.h \
+ /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/sys.h \
  /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/sockets.h \
  /root/esp/ESP8266_RTOS_SDK/components/newlib/platform_include/sys/poll.h \
  /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/netif.h \
- /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/err.h \
  /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/pbuf.h \
  /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/stats.h \
  /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/mem.h \
@@ -84,16 +89,17 @@ app_mqtt.o: /root/esp/github/esp8266_freertos/main/app_mqtt.c \
  /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/errno.h \
  /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/dns.h \
  /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/netdb.h \
- /root/esp/ESP8266_RTOS_SDK/components/log/include/esp_log.h \
- /root/esp/ESP8266_RTOS_SDK/components/log/include/esp_log_internal.h \
  /root/esp/ESP8266_RTOS_SDK/components/mqtt/esp-mqtt/include/mqtt_client.h \
  /root/esp/ESP8266_RTOS_SDK/components/mqtt/esp-mqtt/include/mqtt_config.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp_http_server/include/esp_http_server.h \
+ /root/esp/ESP8266_RTOS_SDK/components/http_parser/include/http_parser.h \
+ /root/esp/github/esp8266_freertos/components/esp/include/wangyonglin/io.h \
  /root/esp/github/esp8266_freertos/components/wifi/include/wangyonglin/wifi.h \
  /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/event_groups.h \
  /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/timers.h \
  /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/task.h
 
-/root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_wifi.h:
+/root/esp/github/esp8266_freertos/components/esp/include/wangyonglin/esp.h:
 
 /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/FreeRTOS.h:
 
@@ -153,16 +159,6 @@ app_mqtt.o: /root/esp/github/esp8266_freertos/main/app_mqtt.c \
 
 /root/esp/ESP8266_RTOS_SDK/components/heap/port/esp8266/include/esp_heap_config.h:
 
-/root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/queue.h:
-
-/root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_wifi_types.h:
-
-/root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_interface.h:
-
-/root/esp/ESP8266_RTOS_SDK/components/esp_event/include/esp_event_base.h:
-
-/root/esp/ESP8266_RTOS_SDK/components/esp_event/include/esp_event.h:
-
 /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/task.h:
 
 /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/private/list.h:
@@ -171,11 +167,23 @@ app_mqtt.o: /root/esp/github/esp8266_freertos/main/app_mqtt.c \
 
 /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/queue.h:
 
-/root/esp/ESP8266_RTOS_SDK/components/esp_event/include/esp_event_base.h:
+/root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/queue.h:
 
-/root/esp/ESP8266_RTOS_SDK/components/esp_event/include/esp_event_legacy.h:
+/root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_system.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_idf_version.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/log/include/esp_log.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/log/include/esp_log_internal.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/tcpip_adapter/include/esp_netif.h:
 
 /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_wifi_types.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_interface.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/esp_event/include/esp_event_base.h:
 
 /root/esp/ESP8266_RTOS_SDK/components/tcpip_adapter/include/tcpip_adapter.h:
 
@@ -196,10 +204,6 @@ app_mqtt.o: /root/esp/github/esp8266_freertos/main/app_mqtt.c \
 /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_libc.h:
 
 /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/rom/ets_sys.h:
-
-/root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_system.h:
-
-/root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_idf_version.h:
 
 /root/esp/ESP8266_RTOS_SDK/components/lwip/include/apps/sntp/sntp.h:
 
@@ -225,21 +229,33 @@ app_mqtt.o: /root/esp/github/esp8266_freertos/main/app_mqtt.c \
 
 /root/esp/ESP8266_RTOS_SDK/components/lwip/include/apps/dhcpserver/dhcpserver.h:
 
+/root/esp/ESP8266_RTOS_SDK/components/esp_event/include/esp_event.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/esp_event/include/esp_event_base.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/esp_event/include/esp_event_legacy.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/tcpip_adapter/include/tcpip_adapter.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/nvs_flash/include/nvs.h:
+
 /root/esp/ESP8266_RTOS_SDK/components/nvs_flash/include/nvs_flash.h:
 
 /root/esp/ESP8266_RTOS_SDK/components/nvs_flash/include/nvs.h:
 
-/root/esp/ESP8266_RTOS_SDK/components/tcpip_adapter/include/esp_netif.h:
+/root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_wifi.h:
 
-/root/esp/ESP8266_RTOS_SDK/components/tcpip_adapter/include/tcpip_adapter.h:
+/root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_wifi_types.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/err.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/sys.h:
 
 /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/sockets.h:
 
 /root/esp/ESP8266_RTOS_SDK/components/newlib/platform_include/sys/poll.h:
 
 /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/netif.h:
-
-/root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/err.h:
 
 /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/pbuf.h:
 
@@ -263,13 +279,15 @@ app_mqtt.o: /root/esp/github/esp8266_freertos/main/app_mqtt.c \
 
 /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/netdb.h:
 
-/root/esp/ESP8266_RTOS_SDK/components/log/include/esp_log.h:
-
-/root/esp/ESP8266_RTOS_SDK/components/log/include/esp_log_internal.h:
-
 /root/esp/ESP8266_RTOS_SDK/components/mqtt/esp-mqtt/include/mqtt_client.h:
 
 /root/esp/ESP8266_RTOS_SDK/components/mqtt/esp-mqtt/include/mqtt_config.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/esp_http_server/include/esp_http_server.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/http_parser/include/http_parser.h:
+
+/root/esp/github/esp8266_freertos/components/esp/include/wangyonglin/io.h:
 
 /root/esp/github/esp8266_freertos/components/wifi/include/wangyonglin/wifi.h:
 

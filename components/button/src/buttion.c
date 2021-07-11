@@ -16,6 +16,7 @@
 #include <wangyonglin/button.h>
 #include "esp_timer.h"
 #include <wangyonglin/flash.h>
+#include <wangyonglin/event.h>
 typedef enum
 {
     KEY_SHORT_PRESS = 1,
@@ -100,6 +101,7 @@ esp_err_t alink_key_scan(TickType_t ticks_to_wait)
 
 void key_trigger(void *arg)
 {
+    objEvent_t *evt = (objEvent_t *)arg;
     esp_err_t ret = 0;
     KeyInit(KEY_GPIO);
 
@@ -113,12 +115,12 @@ void key_trigger(void *arg)
         {
         case KEY_SHORT_PRESS:
             printf("短按触发回调 ... \r\n");
-
+            objEventToggler(evt);
             break;
 
         case KEY_LONG_PRESS:
             printf("长按触发回调 ... \r\n");
-            wang_flash_bit_set(0);
+            objFlashBootSet(0);
             break;
 
         default:
@@ -129,7 +131,9 @@ void key_trigger(void *arg)
     vTaskDelete(NULL);
 }
 
-void wang_button_bit()
+esp_err_t objButtonInit(objEvent_t *evt)
 {
-    xTaskCreate(key_trigger, "key_trigger", 1024 * 3,NULL, 10, NULL);
+    esp_err_t err = ESP_OK;
+    xTaskCreate(key_trigger, "key_trigger", 1024 * 3, evt, 10, NULL);
+    return err;
 }

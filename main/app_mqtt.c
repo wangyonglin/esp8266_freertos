@@ -9,32 +9,14 @@
  * 
  */
 
-#include <stdio.h>
-#include <stdint.h>
-#include <stddef.h>
-#include <string.h>
-#include "esp_wifi.h"
-#include "esp_system.h"
-#include "nvs_flash.h"
-#include "esp_event.h"
-#include "esp_netif.h"
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "freertos/semphr.h"
-#include "freertos/queue.h"
-
-#include "lwip/sockets.h"
-#include "lwip/dns.h"
-#include "lwip/netdb.h"
-
-#include "esp_log.h"
-#include "mqtt_client.h"
+#include <wangyonglin/esp.h>
+#include <wangyonglin/io.h>
 #include <wangyonglin/wifi.h>
 static const char *TAG = "MQTT_EXAMPLE";
 
 #define WANGYONGLIN_MQTT_BROKER_URL "mqtt://broker.wangyonglin.com"
 #define WANGYONGLIN_MQTT_USERNAME "wangyonglin"
-#define WANGYONGLIN_MQTT_PASSWORD ""
+#define WANGYONGLIN_MQTT_PASSWORD "W@ng0811"
 #define WANGYONGLIN_MQTT_TOPIC "jscs"
 static esp_err_t mqtt_event_handler_cb(esp_mqtt_event_handle_t event)
 {
@@ -85,7 +67,7 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
 void mqtt_app_start(void)
 {
     esp_mqtt_client_config_t mqtt_cfg = {
-        .client_id=wang_ap_default(),
+        .client_id=objChipId(),
         .uri = WANGYONGLIN_MQTT_BROKER_URL,
         .username=WANGYONGLIN_MQTT_USERNAME,
         .password=WANGYONGLIN_MQTT_PASSWORD
@@ -93,4 +75,5 @@ void mqtt_app_start(void)
     esp_mqtt_client_handle_t client = esp_mqtt_client_init(&mqtt_cfg);
     esp_mqtt_client_register_event(client, ESP_EVENT_ANY_ID, mqtt_event_handler, client);
     esp_mqtt_client_start(client);
+    //esp_mqtt_client_stop(client);
 }

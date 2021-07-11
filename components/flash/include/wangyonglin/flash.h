@@ -8,16 +8,17 @@
  */
 #ifndef WANGYONGLIN_FLASH_H
 #define WANGYONGLIN_FLASH_H
+#include <wangyonglin/esp.h>
 #include <wangyonglin/wifi.h>
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-    esp_err_t wang_flash_wifi_set(wifi_config_t *cfg);
-    esp_err_t wang_flash_wifi_get(wifi_config_t *cfg);
-    int16_t wang_flash_bit_get(void);
-    esp_err_t wang_flash_bit_set(int16_t val);
+    esp_err_t objFlashWifiSet(wifi_config_t *cfg);
+    esp_err_t objFlashWifiGet(wifi_config_t *cfg);
 
+    int16_t objFlashBootGet(void);
+    esp_err_t objFlashBootSet(int16_t val);
 #ifdef __cplusplus
 }
 #endif

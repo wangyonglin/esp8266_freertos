@@ -1,22 +1,25 @@
 /**
- * @file app.h
+ * @file adapter.h
  * @author 王永林 (admin@wangyonglin.com)
  * @brief 
  * @version 1.0.0
- * @date 2021年07月10日
+ * @date 2021年07月11日
  * 
  * @copyright Copyright (c) 1988-2021 wangyonglin.com. All rights reserved.
  * 
  */
-#ifndef APP_H
-#define APP_H
+
+#ifndef ESP_ADAPTER_H
+#define ESP_ADAPTER_H
+#include <wangyonglin/esp.h>
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-void mqtt_app_start(void);
+esp_err_t objAdapterInit(void);
 #ifdef __cplusplus
 }
 #endif
 #endif
+

@@ -36,9 +36,9 @@ esp_err_t config_json(httpd_req_t *req)
     bzero(&cfg, sizeof(wifi_config_t));
     httpd_query_key_value(content, "ssid", (char *)cfg.sta.ssid, sizeof(cfg.ap.ssid));
     httpd_query_key_value(content, "passwd", (char *)cfg.sta.password, sizeof(cfg.ap.password));
-    if (wang_flash_wifi_set(&cfg) == ESP_OK)
+    if (objFlashWifiSet(&cfg) == ESP_OK)
     {
-        if (wang_flash_bit_set(1) == ESP_OK)
+        if (objFlashBootSet(1) == ESP_OK)
         {
             cJSON_AddNumberToObject(root, "code", 200);
             cJSON_AddStringToObject(root, "message", "配置成功,请重启!");
