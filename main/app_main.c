@@ -8,23 +8,22 @@
  * @copyright Copyright (c) 1988-2021 wangyonglin.com. All rights reserved.
  * 
  */
+#include <wangyonglin/wangyonglin.h>
 #include <wangyonglin/esp.h>
-#include <wangyonglin/io.h>
-#include <wangyonglin/httpd.h>
-#include <wangyonglin/wifi.h>
-#include <wangyonglin/button.h>
-#include <wangyonglin/event.h>
-#include <wangyonglin/mqtt.h>
 
 static const char *TAG = "main";
-
-objEvent_t evt;
-void app_main(){
+objQueue_t queue;
+objEvent_t trigger;
+objEvent_t button;
+void app_main()
+{
     objSystemInit();
-    objEventInit(&evt, objIOButton);
-    objEventClick(&evt, objIOLow);
-    objButtonInit(&evt);
+    objEventInit(&trigger, objIOButton);
+    objEventClick(&trigger, objIOLow);
+    objButtonInit(&button);
+    objQueueInit(&queue,&trigger);
     initialise_wifi();
-    mqtt_app_start();
-}
+    objMqttStart(&queue);
 
+    // objOtaStart("https://www.wangyonglin.com/hello-world.bin");
+}

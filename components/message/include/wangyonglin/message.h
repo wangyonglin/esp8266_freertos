@@ -10,19 +10,23 @@
  */
 #ifndef WANGYONGLIN_MESSAGE_H
 #define WANGYONGLIN_MESSAGE_H
-#include <cJSON.h>
+#include <wangyonglin/esp.h>
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-typedef struct objMessage{
-    cJSON * root;
-}objMessage_t;
-
-objMessage_t *objMessageInit();
-esp_err_t objMessageSkeleton(objMessage_t *obj, const char *id, double level);
-char *objMessagePrint(objMessage_t *obj);
-
+    typedef int objTrun_t;
+#define objTrunNone ((objTrun_t)-1)
+#define objTrunOn ((objTrun_t)1)
+#define objTrunOff ((objTrun_t)0)
+    typedef struct objMessage
+    {
+        char *topic;
+        int level;
+        objTrun_t trun;
+    } objMessage_t;
+    esp_err_t objMessageInit(objMessage_t *message);
+    esp_err_t objMessage(char *data, objMessage_t *message);
 #ifdef __cplusplus
 }
 #endif

@@ -35,14 +35,17 @@
  /root/esp/github/esp8266_freertos/build/newlib/libnewlib.a
  /root/esp/github/esp8266_freertos/build/nvs_flash/libnvs_flash.a
  /root/esp/github/esp8266_freertos/build/openssl/libopenssl.a
+ /root/esp/github/esp8266_freertos/build/ota/libota.a
  /root/esp/github/esp8266_freertos/build/protobuf-c/libprotobuf-c.a
  /root/esp/github/esp8266_freertos/build/protocomm/libprotocomm.a
  /root/esp/github/esp8266_freertos/build/pthread/libpthread.a
+ /root/esp/github/esp8266_freertos/build/queue/libqueue.a
  /root/esp/github/esp8266_freertos/build/spi_flash/libspi_flash.a
  /root/esp/github/esp8266_freertos/build/spi_ram/libspi_ram.a
  /root/esp/github/esp8266_freertos/build/spiffs/libspiffs.a
  /root/esp/github/esp8266_freertos/build/tcp_transport/libtcp_transport.a
  /root/esp/github/esp8266_freertos/build/tcpip_adapter/libtcpip_adapter.a
+ /root/esp/github/esp8266_freertos/build/uart/libuart.a
  /root/esp/github/esp8266_freertos/build/vfs/libvfs.a
  /root/esp/github/esp8266_freertos/build/wear_levelling/libwear_levelling.a
  /root/esp/github/esp8266_freertos/build/wifi/libwifi.a

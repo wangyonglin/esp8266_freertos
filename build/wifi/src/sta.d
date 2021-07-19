@@ -98,8 +98,22 @@ src/sta.o: /root/esp/github/esp8266_freertos/components/wifi/src/sta.c \
  /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/netdb.h \
  /root/esp/ESP8266_RTOS_SDK/components/mqtt/esp-mqtt/include/mqtt_client.h \
  /root/esp/ESP8266_RTOS_SDK/components/mqtt/esp-mqtt/include/mqtt_config.h \
- /root/esp/ESP8266_RTOS_SDK/components/esp_http_server/include/esp_http_server.h \
+ /root/esp/ESP8266_RTOS_SDK/components/app_update/include/esp_ota_ops.h \
+ /root/esp/ESP8266_RTOS_SDK/components/spi_flash/include/esp_partition.h \
+ /root/esp/ESP8266_RTOS_SDK/components/spi_flash/include/esp_spi_flash.h \
+ /root/esp/ESP8266_RTOS_SDK/components/spi_flash/include/spi_flash.h \
+ /root/esp/ESP8266_RTOS_SDK/components/spi_flash/include/esp_spi_flash.h \
+ /root/esp/ESP8266_RTOS_SDK/components/bootloader_support/include/esp_app_format.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp_http_client/include/esp_http_client.h \
  /root/esp/ESP8266_RTOS_SDK/components/http_parser/include/http_parser.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp_https_ota/include/esp_https_ota.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp_http_server/include/esp_http_server.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/driver/uart.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/driver/gpio.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp8266/pin_mux_register.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp8266/eagle_soc.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp8266/gpio_register.h \
+ /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_timer.h \
  /root/esp/github/esp8266_freertos/components/esp/include/wangyonglin/io.h
 
 /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/FreeRTOS.h:
@@ -300,9 +314,37 @@ src/sta.o: /root/esp/github/esp8266_freertos/components/wifi/src/sta.c \
 
 /root/esp/ESP8266_RTOS_SDK/components/mqtt/esp-mqtt/include/mqtt_config.h:
 
-/root/esp/ESP8266_RTOS_SDK/components/esp_http_server/include/esp_http_server.h:
+/root/esp/ESP8266_RTOS_SDK/components/app_update/include/esp_ota_ops.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/spi_flash/include/esp_partition.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/spi_flash/include/esp_spi_flash.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/spi_flash/include/spi_flash.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/spi_flash/include/esp_spi_flash.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/bootloader_support/include/esp_app_format.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/esp_http_client/include/esp_http_client.h:
 
 /root/esp/ESP8266_RTOS_SDK/components/http_parser/include/http_parser.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/esp_https_ota/include/esp_https_ota.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/esp_http_server/include/esp_http_server.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/esp8266/include/driver/uart.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/esp8266/include/driver/gpio.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp8266/pin_mux_register.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp8266/eagle_soc.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp8266/gpio_register.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_timer.h:
 
 /root/esp/github/esp8266_freertos/components/esp/include/wangyonglin/io.h:
 /root/esp/github/esp8266_freertos/components/wifi/src/sta.c:

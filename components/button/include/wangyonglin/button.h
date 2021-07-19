@@ -2,6 +2,7 @@
 #define WANGYONGLIN_BUTTON_H
 #include <wangyonglin/esp.h>
 #include <wangyonglin/event.h>
+#include <wangyonglin/io.h>
 #ifdef __cplusplus
 extern "C"
 {

@@ -10,9 +10,8 @@ extern "C"
         objIOBoot = 4,
         objIOButton = 14
     } objGPIO_t;
-    
     typedef uint32_t objIO_t;
-    
+
 #define objIOHigh ((objIO_t)1)
 #define objIOLow ((objIO_t)0)
 

@@ -10,12 +10,13 @@
  */
 #ifndef WANGYONGLIN_MAIN_MQTT_H
 #define WANGYONGLIN_MAIN_MQTT_H
-
+#include <wangyonglin/queue.h>
+#include <wangyonglin/esp.h>
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-void mqtt_app_start(void);
+void objMqttStart(objQueue_t *queue);
 #ifdef __cplusplus
 }
 #endif

@@ -23,14 +23,25 @@
 #include "lwip/dns.h"
 #include "lwip/netdb.h"
 #include "mqtt_client.h"
+#include "esp_ota_ops.h"
+#include "esp_http_client.h"
+#include "esp_https_ota.h"
 #include <esp_http_server.h>
+#include "driver/uart.h"
+#include "driver/gpio.h"
+#include "esp_timer.h"
+#include <string.h>
+#include <cJSON.h>
 #include <wangyonglin/io.h>
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-
+    struct objSystemVersion
+    {
+    };
+    typedef struct objSystemVersion objSystemVersion_t;
     char *objChipId(void);
     void objSystemInit(void);
 #ifdef __cplusplus
