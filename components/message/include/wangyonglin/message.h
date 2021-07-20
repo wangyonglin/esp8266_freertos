@@ -16,17 +16,21 @@ extern "C"
 {
 #endif
     typedef int objTrun_t;
-#define objTrunNone ((objTrun_t)-1)
-#define objTrunOn ((objTrun_t)1)
-#define objTrunOff ((objTrun_t)0)
+#define On ((objTrun_t)1)
+#define Off ((objTrun_t)0)
+#define None ((objTrun_t)-1)
+    typedef unsigned char objData_t;
     typedef struct objMessage
     {
-        char *topic;
         int level;
         objTrun_t trun;
+        objData_t rf433[16];
+        objData_t pvBuffer[1024];
     } objMessage_t;
     esp_err_t objMessageInit(objMessage_t *message);
-    esp_err_t objMessage(char *data, objMessage_t *message);
+    esp_err_t objMessageClean(objMessage_t *message);
+    esp_err_t objMessageTrun(objMessage_t *message);
+    esp_err_t objMessageRF433(objMessage_t *message);
 #ifdef __cplusplus
 }
 #endif

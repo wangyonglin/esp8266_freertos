@@ -12,6 +12,7 @@
 #include <wangyonglin/ota.h>
 #include <wangyonglin/flash.h>
 #include <wangyonglin/queue.h>
+#include <wangyonglin/string.h>
 #ifdef __cplusplus
 extern "C"
 {

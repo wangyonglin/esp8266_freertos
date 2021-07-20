@@ -22,6 +22,7 @@ void app_main()
     objEventClick(&trigger, objIOLow);
     objButtonInit(&button);
     objQueueInit(&queue,&trigger);
+    objUartInit(9600);
     initialise_wifi();
     objMqttStart(&queue);
 

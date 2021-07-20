@@ -1,12 +1,11 @@
 #include <wangyonglin/esp.h>
 #include <wangyonglin/wangyonglin.h>
 static const char *TAG = "MESSAGE";
-esp_err_t objMessage(char *data, objMessage_t *message)
+esp_err_t objMessageTrun(objMessage_t *message)
 {
-    objMessageInit(message);
     esp_err_t err = ESP_OK;
     cJSON *root;
-    root = cJSON_Parse(data);
+    root = cJSON_Parse((char *)message->pvBuffer);
     if (!root)
     {
         ESP_LOGI(TAG, "cjson parse failt root");
@@ -39,12 +38,14 @@ esp_err_t objMessage(char *data, objMessage_t *message)
     }
     if (strcmp(trun->valuestring, "on") == 0)
     {
-        message->trun = objTrunOn;
+        ESP_LOGI(TAG, "trun on");
+        message->trun = On;
         return err;
     }
     else if (strcmp(trun->valuestring, "off") == 0)
     {
-        message->trun = objTrunOff;
+        ESP_LOGI(TAG, "trun off");
+        message->trun = Off;
         return err;
     }
     cJSON_Delete(trun);
@@ -53,10 +54,69 @@ esp_err_t objMessage(char *data, objMessage_t *message)
     cJSON_Delete(root);
     return err;
 }
+
+esp_err_t objMessageRF433(objMessage_t *message)
+{
+    esp_err_t err = ESP_OK;
+    cJSON *root;
+    root = cJSON_Parse((char *)message->pvBuffer);
+    if (!root)
+    {
+        ESP_LOGI(TAG, "cjson parse failt root");
+        return ESP_ERR_INVALID_ARG;
+    }
+
+    cJSON *success = cJSON_GetObjectItem(root, "success");
+    if (!success)
+    {
+        ESP_LOGI(TAG, "cjson parse failt success");
+        cJSON_Delete(root);
+        return ESP_ERR_INVALID_ARG;
+    }
+    cJSON *result = cJSON_GetObjectItem(root, "result");
+    if (!result)
+    {
+        ESP_LOGI(TAG, "cjson parse failt result");
+        cJSON_Delete(success);
+        cJSON_Delete(root);
+        return ESP_ERR_INVALID_ARG;
+    }
+    cJSON *rf433 = cJSON_GetObjectItem(result, "rf433");
+    if (!rf433)
+    {
+        ESP_LOGI(TAG, "cjson parse failt rf433");
+        cJSON_Delete(result);
+        cJSON_Delete(success);
+        cJSON_Delete(root);
+        return ESP_ERR_INVALID_ARG;
+    }
+    else
+    {
+        int len = strlen(rf433->valuestring);
+        if (len < sizeof(message->rf433))
+        {
+            ESP_LOGI(TAG, "rf433 %s", rf433->valuestring);
+            strbytes(rf433->valuestring, message->rf433);
+        }
+    }
+
+    cJSON_Delete(rf433);
+    cJSON_Delete(result);
+    cJSON_Delete(success);
+    cJSON_Delete(root);
+    return err;
+}
+
 esp_err_t objMessageInit(objMessage_t *message)
 {
     esp_err_t err = ESP_OK;
     message->level = -1;
-    message->trun = objTrunNone;
+    message->trun = None;
+    bzero(message->rf433, sizeof(message->rf433));
+    bzero(message->pvBuffer, sizeof(message->pvBuffer));
     return err;
+}
+esp_err_t objMessageClean(objMessage_t *message)
+{
+    return ESP_OK;
 }

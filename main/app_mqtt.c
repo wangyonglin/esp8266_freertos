@@ -16,9 +16,9 @@ static const char *TAG = "MQTT";
 #define WANGYONGLIN_MQTT_BROKER_URL "mqtt://broker.wangyonglin.com"
 #define WANGYONGLIN_MQTT_USERNAME "wangyonglin"
 #define WANGYONGLIN_MQTT_PASSWORD "W@ng0811"
-#define WANGYONGLIN_MQTT_TOPIC "/wangyonglin/relay/set"
+#define TOPIC_RF433 "rf433"
+#define TOPIC_TRUN "trun"
 objMessage_t message;
-
 static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event_id, void *event_data)
 {
     ESP_LOGD(TAG, "Event dispatched from event loop base=%s, event_id=%d", base, event_id);
@@ -29,7 +29,9 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
     {
     case MQTT_EVENT_CONNECTED:
         ESP_LOGI(TAG, "MQTT_EVENT_CONNECTED");
-        msg_id = esp_mqtt_client_subscribe(event->client, WANGYONGLIN_MQTT_TOPIC, 0);
+        msg_id = esp_mqtt_client_subscribe(event->client, TOPIC_RF433, 0);
+        ESP_LOGI(TAG, "sent subscribe successful, msg_id=%d", msg_id);
+        msg_id = esp_mqtt_client_subscribe(event->client, TOPIC_TRUN, 0);
         ESP_LOGI(TAG, "sent subscribe successful, msg_id=%d", msg_id);
         break;
     case MQTT_EVENT_DISCONNECTED:
@@ -38,8 +40,6 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
 
     case MQTT_EVENT_SUBSCRIBED:
         ESP_LOGI(TAG, "MQTT_EVENT_SUBSCRIBED, msg_id=%d", event->msg_id);
-        msg_id = esp_mqtt_client_publish(event->client, WANGYONGLIN_MQTT_TOPIC, "data", 0, 0, 0);
-        ESP_LOGI(TAG, "sent publish successful, msg_id=%d", msg_id);
         break;
     case MQTT_EVENT_UNSUBSCRIBED:
         ESP_LOGI(TAG, "MQTT_EVENT_UNSUBSCRIBED, msg_id=%d", event->msg_id);
@@ -48,13 +48,26 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
         ESP_LOGI(TAG, "MQTT_EVENT_PUBLISHED, msg_id=%d", event->msg_id);
         break;
     case MQTT_EVENT_DATA:
-        if (objMessage(event->data, &message) == ESP_OK)
+        objMessageInit(&message);
+        if (strncmp(TOPIC_RF433, event->topic, event->topic_len) == 0)
         {
-            if (xQueueSend(queue->xQueue, &message, NULL) != pdPASS)
+            message.level = 0x0001;
+            memcpy(message.pvBuffer, event->data, event->data_len);
+            if (xQueueSendToBack(queue->xQueue, &message, NULL) != pdPASS)
             {
-                ESP_LOGI(TAG, "xQueueSend Fail");
+                ESP_LOGI(TAG, "send rf433 queue fail");
             }
         }
+        else if (strncmp(TOPIC_TRUN, event->topic, event->topic_len) == 0)
+        {
+            message.level = 0x0002;
+            memcpy(message.pvBuffer, event->data, event->data_len);
+            if (xQueueSendToBack(queue->xQueue, &message, NULL) != pdPASS)
+            {
+                ESP_LOGI(TAG, "send trun queue fail");
+            }
+        }
+
         break;
     case MQTT_EVENT_ERROR:
         ESP_LOGI(TAG, "MQTT_EVENT_ERROR");

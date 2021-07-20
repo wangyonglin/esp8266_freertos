@@ -123,7 +123,8 @@ src/message.o: \
  /root/esp/github/esp8266_freertos/main/include/wangyonglin/mqtt.h \
  /root/esp/github/esp8266_freertos/components/queue/include/wangyonglin/queue.h \
  /root/esp/github/esp8266_freertos/components/ota/include/wangyonglin/ota.h \
- /root/esp/github/esp8266_freertos/components/flash/include/wangyonglin/flash.h
+ /root/esp/github/esp8266_freertos/components/flash/include/wangyonglin/flash.h \
+ /root/esp/github/esp8266_freertos/components/string/include/wangyonglin/string.h
 
 /root/esp/github/esp8266_freertos/components/esp/include/wangyonglin/esp.h:
 
@@ -372,4 +373,6 @@ src/message.o: \
 /root/esp/github/esp8266_freertos/components/ota/include/wangyonglin/ota.h:
 
 /root/esp/github/esp8266_freertos/components/flash/include/wangyonglin/flash.h:
+
+/root/esp/github/esp8266_freertos/components/string/include/wangyonglin/string.h:
 /root/esp/github/esp8266_freertos/components/message/src/message.c:

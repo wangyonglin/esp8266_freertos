@@ -43,6 +43,7 @@
  /root/esp/github/esp8266_freertos/build/spi_flash/libspi_flash.a
  /root/esp/github/esp8266_freertos/build/spi_ram/libspi_ram.a
  /root/esp/github/esp8266_freertos/build/spiffs/libspiffs.a
+ /root/esp/github/esp8266_freertos/build/string/libstring.a
  /root/esp/github/esp8266_freertos/build/tcp_transport/libtcp_transport.a
  /root/esp/github/esp8266_freertos/build/tcpip_adapter/libtcpip_adapter.a
  /root/esp/github/esp8266_freertos/build/uart/libuart.a
