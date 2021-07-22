@@ -6,13 +6,12 @@
 #include <wangyonglin/io.h>
 #include <wangyonglin/httpd.h>
 #include <wangyonglin/wifi.h>
-#include <wangyonglin/button.h>
-#include <wangyonglin/event.h>
 #include <wangyonglin/mqtt.h>
 #include <wangyonglin/ota.h>
 #include <wangyonglin/flash.h>
 #include <wangyonglin/queue.h>
 #include <wangyonglin/string.h>
+#include <wangyonglin/gpio.h>
 #ifdef __cplusplus
 extern "C"
 {

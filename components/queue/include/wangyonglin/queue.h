@@ -21,12 +21,11 @@ extern "C"
     struct objHandle
     {
         xQueueHandle xQueue;
-        objEvent_t *trigger;
         TickType_t ticks_to_wait;
     };
 
     typedef struct objHandle objQueue_t;
-    esp_err_t objQueueInit(objQueue_t *queue, objEvent_t *trigger);
+    esp_err_t objQueueInit(objQueue_t *queue);
 #ifdef __cplusplus
 }
 #endif

@@ -16,8 +16,8 @@ static const char *TAG = "MQTT";
 #define WANGYONGLIN_MQTT_BROKER_URL "mqtt://broker.wangyonglin.com"
 #define WANGYONGLIN_MQTT_USERNAME "wangyonglin"
 #define WANGYONGLIN_MQTT_PASSWORD "W@ng0811"
-#define TOPIC_RF433 "rf433"
-#define TOPIC_TRUN "trun"
+#define TOPIC_RF433 "/wangyonglin/rf433"
+#define TOPIC_TRUN "/wangyonglin/trun"
 objMessage_t message;
 static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event_id, void *event_data)
 {

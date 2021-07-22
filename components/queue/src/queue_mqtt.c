@@ -17,11 +17,11 @@ void objQueueWaitHandler(void *pvParameter)
                 objMessageTrun(&message);
                 if (message.trun == On)
                 {
-                    objEventClick(queue->trigger, objIOHigh);
+                    objGpioOutputSet(IO05,0);
                 }
                 else if (message.trun == Off)
                 {              
-                    objEventClick(queue->trigger, objIOLow);
+                     objGpioOutputSet(IO05,1);
                 }
             }
             else if (message.level == 0x0001)
@@ -38,12 +38,11 @@ void objQueueWaitHandler(void *pvParameter)
     }
     vTaskDelete(NULL);
 }
-esp_err_t objQueueInit(objQueue_t *queue, objEvent_t *trigger)
+esp_err_t objQueueInit(objQueue_t *queue)
 {
 
     queue->xQueue = xQueueCreate(3, sizeof(objMessage_t));
     queue->ticks_to_wait = portMAX_DELAY;
-    queue->trigger = trigger;
     esp_err_t err = ESP_OK;
     xTaskCreate(objQueueWaitHandler, "objQueueWaitHandler", 1024 * 5, queue, 10, NULL);
     return err;

@@ -13,16 +13,24 @@
 
 static const char *TAG = "main";
 objQueue_t queue;
-objEvent_t trigger;
-objEvent_t button;
+void input_handler(uint32_t press,uint32_t io)
+{
+    if (press == KEY_LONG_PRESS)
+    {
+        objFlashBootSet(0);
+    }
+    else if (press == KEY_SHORT_PRESS)
+    {
+        objGpioOutputChange(IO05);
+    }
+}
 void app_main()
 {
     objSystemInit();
-    objEventInit(&trigger, objIOButton);
-    objEventClick(&trigger, objIOLow);
-    objButtonInit(&button);
-    objQueueInit(&queue,&trigger);
+    objQueueInit(&queue);
     objUartInit(9600);
+    objGpioOutputInit((1ULL<<IO14));
+    objGpioInputInit(IO05, input_handler);
     initialise_wifi();
     objMqttStart(&queue);
 
