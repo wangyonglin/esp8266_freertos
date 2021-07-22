@@ -6,13 +6,13 @@ static const char *TAG = "GPIO";
 static xQueueHandle gpio_evt_queue = NULL;
 static void gpio_isr_handler(void *arg)
 {
-    objIO_t io = (objIO_t)arg;
+    uint32_t io = (uint32_t)arg;
     xQueueSendFromISR(gpio_evt_queue, &io, NULL);
 }
 
 static void gpio_task_example(void *arg)
 {
-    objIO_t io;
+    uint32_t io;
     objGpio_cb_t callback = (objGpio_cb_t)arg;
     BaseType_t press_key = pdFALSE;
     BaseType_t lift_key = pdFALSE;
@@ -57,7 +57,7 @@ static void gpio_task_example(void *arg)
     }
 }
 
-esp_err_t objGpioInputInit(objIO_t io, objGpio_cb_t cb)
+esp_err_t objGpioInputInit(uint32_t io, objGpio_cb_t cb)
 {
 
     gpio_config_t io_conf;
@@ -67,7 +67,7 @@ esp_err_t objGpioInputInit(objIO_t io, objGpio_cb_t cb)
     io_conf.pull_up_en = 1;
     gpio_config(&io_conf);
     gpio_set_intr_type(io, GPIO_INTR_ANYEDGE);
-    gpio_evt_queue = xQueueCreate(10, sizeof(objIO_t));
+    gpio_evt_queue = xQueueCreate(10, sizeof(uint32_t));
     xTaskCreate(gpio_task_example, "gpio_task_example", 2048, cb, 10, NULL);
     gpio_install_isr_service(0);
     gpio_isr_handler_add(io, gpio_isr_handler, (void *)io);
@@ -84,7 +84,7 @@ esp_err_t objGpioOutputInit(uint32_t pin_bit_mask)
     gpio_config(&io_conf);                 //配置GPIO
     return ESP_OK;
 }
-esp_err_t objGpioOutputSet(objIO_t io, uint32_t level)
+esp_err_t objGpioOutputSet(uint32_t io, uint32_t level)
 {
     return gpio_set_level(io, level);
 }
