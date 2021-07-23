@@ -17,11 +17,11 @@ void objQueueWaitHandler(void *pvParameter)
                 objMessageTrun(&message);
                 if (message.trun == On)
                 {
-                    objGpioOutputSet(IO05,0);
+                    objGpioOutputSet(IO14,0);
                 }
                 else if (message.trun == Off)
                 {              
-                     objGpioOutputSet(IO05,1);
+                     objGpioOutputSet(IO14,1);
                 }
             }
             else if (message.level == 0x0001)

@@ -21,7 +21,7 @@ void input_handler(uint32_t press,uint32_t io)
     }
     else if (press == KEY_SHORT_PRESS)
     {
-        objGpioOutputChange(IO05);
+        objGpioOutputChange(IO14);
     }
 }
 void app_main()

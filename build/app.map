@@ -11046,71 +11046,71 @@ END GROUP
                 0x0000000040105cb8                g_misc_nvs
                 0x0000000040105cbc                g_log_mod
                 0x0000000040105cc0                g_log_level
- *libfreertos.a:queue.*(.bss .bss.* COMMON)
- *libfreertos.a:stream_buffer.*(.bss .bss.* COMMON)
- *libfreertos.a:list.*(.bss .bss.* COMMON)
- *libfreertos.a:timers.*(.bss .bss.* COMMON)
- .bss.xLastTime$4351
-                0x0000000040105cc4        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(timers.o)
- .bss.xTimerTaskHandle
-                0x0000000040105cc8        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(timers.o)
- .bss.xTimerQueue
-                0x0000000040105ccc        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(timers.o)
- .bss.pxOverflowTimerList
-                0x0000000040105cd0        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(timers.o)
- .bss.pxCurrentTimerList
-                0x0000000040105cd4        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(timers.o)
- .bss.xActiveTimerList2
-                0x0000000040105cd8       0x14 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(timers.o)
- .bss.xActiveTimerList1
-                0x0000000040105cec       0x14 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(timers.o)
- *libfreertos.a:event_groups.*(.bss .bss.* COMMON)
- *libfreertos.a:impure.*(.bss .bss.* COMMON)
  *libfreertos.a:tasks.*(.bss .bss.* COMMON)
  .bss.uxSchedulerSuspended
-                0x0000000040105d00        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
+                0x0000000040105cc4        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
  .bss.xIdleTaskHandle
-                0x0000000040105d04        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
+                0x0000000040105cc8        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
  .bss.xNextTaskUnblockTime
-                0x0000000040105d08        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
+                0x0000000040105ccc        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
  .bss.uxTaskNumber
-                0x0000000040105d0c        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
+                0x0000000040105cd0        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
  .bss.xNumOfOverflows
-                0x0000000040105d10        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
+                0x0000000040105cd4        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
  .bss.xYieldPending
-                0x0000000040105d14        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
+                0x0000000040105cd8        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
  .bss.uxPendedTicks
-                0x0000000040105d18        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
+                0x0000000040105cdc        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
  .bss.xSchedulerRunning
-                0x0000000040105d1c        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
+                0x0000000040105ce0        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
  .bss.uxTopReadyPriority
-                0x0000000040105d20        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
+                0x0000000040105ce4        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
  .bss.xTickCount
-                0x0000000040105d24        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
+                0x0000000040105ce8        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
  .bss.uxCurrentNumberOfTasks
-                0x0000000040105d28        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
+                0x0000000040105cec        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
  .bss.xSuspendedTaskList
-                0x0000000040105d2c       0x14 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
+                0x0000000040105cf0       0x14 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
  .bss.uxDeletedTasksWaitingCleanUp
-                0x0000000040105d40        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
+                0x0000000040105d04        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
  .bss.xTasksWaitingTermination
-                0x0000000040105d44       0x14 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
+                0x0000000040105d08       0x14 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
  .bss.xPendingReadyList
-                0x0000000040105d58       0x14 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
+                0x0000000040105d1c       0x14 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
  .bss.pxOverflowDelayedTaskList
-                0x0000000040105d6c        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
+                0x0000000040105d30        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
  .bss.pxDelayedTaskList
-                0x0000000040105d70        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
+                0x0000000040105d34        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
  .bss.xDelayedTaskList2
-                0x0000000040105d74       0x14 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
+                0x0000000040105d38       0x14 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
  .bss.xDelayedTaskList1
-                0x0000000040105d88       0x14 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
+                0x0000000040105d4c       0x14 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
  .bss.pxReadyTasksLists
-                0x0000000040105d9c      0x12c /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
+                0x0000000040105d60      0x12c /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
  .bss.pxCurrentTCB
-                0x0000000040105ec8        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
-                0x0000000040105ec8                pxCurrentTCB
+                0x0000000040105e8c        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(tasks.o)
+                0x0000000040105e8c                pxCurrentTCB
+ *libfreertos.a:stream_buffer.*(.bss .bss.* COMMON)
+ *libfreertos.a:event_groups.*(.bss .bss.* COMMON)
+ *libfreertos.a:impure.*(.bss .bss.* COMMON)
+ *libfreertos.a:list.*(.bss .bss.* COMMON)
  *libfreertos.a:freertos_hooks.*(.bss .bss.* COMMON)
+ *libfreertos.a:queue.*(.bss .bss.* COMMON)
+ *libfreertos.a:timers.*(.bss .bss.* COMMON)
+ .bss.xLastTime$4351
+                0x0000000040105e90        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(timers.o)
+ .bss.xTimerTaskHandle
+                0x0000000040105e94        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(timers.o)
+ .bss.xTimerQueue
+                0x0000000040105e98        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(timers.o)
+ .bss.pxOverflowTimerList
+                0x0000000040105e9c        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(timers.o)
+ .bss.pxCurrentTimerList
+                0x0000000040105ea0        0x4 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(timers.o)
+ .bss.xActiveTimerList2
+                0x0000000040105ea4       0x14 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(timers.o)
+ .bss.xActiveTimerList1
+                0x0000000040105eb8       0x14 /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a(timers.o)
  *liblwip.a:(.bss .bss.* COMMON)
  .bss.s_aliases$6520
                 0x0000000040105ecc        0x4 /root/esp/github/esp8266_freertos/build/lwip/liblwip.a(netdb.o)
@@ -11484,7 +11484,7 @@ END GROUP
 .dram0.bss      0x000000003ffe86e0     0x2860
                 0x000000003ffe86e0                . = ALIGN (0x8)
                 0x000000003ffe86e0                _bss_start = ABSOLUTE (.)
- *(EXCLUDE_FILE(*liblwip.a *libfreertos.a:queue.* *libfreertos.a:stream_buffer.* *libfreertos.a:list.* *libfreertos.a:timers.* *libfreertos.a:event_groups.* *libfreertos.a:impure.* *libfreertos.a:tasks.* *libfreertos.a:freertos_hooks.* *libcore.a) .bss EXCLUDE_FILE(*liblwip.a *libfreertos.a:queue.* *libfreertos.a:stream_buffer.* *libfreertos.a:list.* *libfreertos.a:timers.* *libfreertos.a:event_groups.* *libfreertos.a:impure.* *libfreertos.a:tasks.* *libfreertos.a:freertos_hooks.* *libcore.a) .bss.* EXCLUDE_FILE(*liblwip.a *libfreertos.a:queue.* *libfreertos.a:stream_buffer.* *libfreertos.a:list.* *libfreertos.a:timers.* *libfreertos.a:event_groups.* *libfreertos.a:impure.* *libfreertos.a:tasks.* *libfreertos.a:freertos_hooks.* *libcore.a) COMMON)
+ *(EXCLUDE_FILE(*liblwip.a *libfreertos.a:tasks.* *libfreertos.a:stream_buffer.* *libfreertos.a:event_groups.* *libfreertos.a:impure.* *libfreertos.a:list.* *libfreertos.a:freertos_hooks.* *libfreertos.a:queue.* *libfreertos.a:timers.* *libcore.a) .bss EXCLUDE_FILE(*liblwip.a *libfreertos.a:tasks.* *libfreertos.a:stream_buffer.* *libfreertos.a:event_groups.* *libfreertos.a:impure.* *libfreertos.a:list.* *libfreertos.a:freertos_hooks.* *libfreertos.a:queue.* *libfreertos.a:timers.* *libcore.a) .bss.* EXCLUDE_FILE(*liblwip.a *libfreertos.a:tasks.* *libfreertos.a:stream_buffer.* *libfreertos.a:event_groups.* *libfreertos.a:impure.* *libfreertos.a:list.* *libfreertos.a:freertos_hooks.* *libfreertos.a:queue.* *libfreertos.a:timers.* *libcore.a) COMMON)
  .bss.base_mac_addr
                 0x000000003ffe86e0        0x6 /root/esp/github/esp8266_freertos/build/esp8266/libesp8266.a(system_api.o)
  *fill*         0x000000003ffe86e6        0x2 
