@@ -24,7 +24,7 @@ extern "C"
     {
         int level;
         objTrun_t trun;
-        objData_t rf433[16];
+        uint8_t rf433[16];
         objData_t pvBuffer[1024];
     } objMessage_t;
     esp_err_t objMessageInit(objMessage_t *message);

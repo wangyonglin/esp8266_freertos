@@ -13,26 +13,66 @@
 
 static const char *TAG = "main";
 objQueue_t queue;
-void input_handler(uint32_t press,uint32_t io)
+void obj_queue_handler(int level, uint8_t *data, int len)
 {
-    if (press == KEY_LONG_PRESS)
+    switch (level)
     {
-        objFlashBootSet(0);
+    case obj_trun_level:
+        if (strcmp((char *)data, "on") == 0)
+        {
+            obj_output_setting(IO00, 0);
+        }
+        else if (strcmp((char *)data, "off") == 0)
+        {
+            obj_output_setting(IO00, 1);
+        }
+        break;
+    case obj_rf433_level:
+        if (data)
+        {
+            ESP_LOGI(TAG, (char *)data);
+        }
+        break;
+    default:
+        break;
     }
-    else if (press == KEY_SHORT_PRESS)
+}
+void key_click_handler(uint8_t event)
+{
+    switch (event)
     {
-        objGpioOutputChange(IO14);
+    case KEY_GPIO_S_PRESS_EVT:
+        ESP_LOGI(TAG, "短按事件");
+        obj_output_switch(IO00);
+        break;
+    case KEY_GPIO_L_PRESS_EVT:
+        ESP_LOGI(TAG, "长按事件");
+        break;
+    case KEY_GPIO_LL_PRESS_EVT:
+        ESP_LOGI(TAG, "超长按事件");
+        objFlashBootSet(0);
+        vTaskDelay(3000 / portTICK_PERIOD_MS);
+        esp_restart();
+        break;
+    default:
+        break;
     }
 }
 void app_main()
 {
     objSystemInit();
-    objQueueInit(&queue);
-    objUartInit(9600);
-    objGpioOutputInit((1ULL<<IO14));
-    objGpioInputInit(IO05, input_handler);
-    initialise_wifi();
-    objMqttStart(&queue);
+    obj_output_init(IO00);
+    obj_queue_init(&queue,obj_queue_handler);
 
-    // objOtaStart("https://www.wangyonglin.com/hello-world.bin");
+    obj_key_init(IO02, key_click_handler);
+    if (objFlashBootGet() == 0)
+    {
+        obj_wifi_apsta_start();
+        obj_httpd_start();
+    }
+    else
+    {
+        obj_wifi_sta_start();
+        obj_mqtt_start(&queue);
+    }
 }

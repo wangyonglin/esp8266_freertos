@@ -78,7 +78,7 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
     }
 }
 
-void objMqttStart(objQueue_t *queue)
+void obj_mqtt_start(objQueue_t *queue)
 {
     esp_mqtt_client_config_t mqtt_cfg = {
         .client_id = objChipId(),

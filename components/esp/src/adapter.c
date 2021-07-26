@@ -1,6 +1,6 @@
 #include <wangyonglin/esp.h>
 
-esp_err_t objAdapterInit(void)
+esp_err_t obj_wifi_adapter_init()
 {
     tcpip_adapter_ip_info_t local_ip;
     esp_err_t err = ESP_OK;

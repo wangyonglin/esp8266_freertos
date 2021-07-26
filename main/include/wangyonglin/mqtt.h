@@ -16,7 +16,7 @@
 extern "C"
 {
 #endif
-void objMqttStart(objQueue_t *queue);
+void obj_mqtt_start(objQueue_t *queue);
 #ifdef __cplusplus
 }
 #endif

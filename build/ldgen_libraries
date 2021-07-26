@@ -17,12 +17,12 @@
  /root/esp/github/esp8266_freertos/build/flash/libflash.a
  /root/esp/github/esp8266_freertos/build/freemodbus/libfreemodbus.a
  /root/esp/github/esp8266_freertos/build/freertos/libfreertos.a
- /root/esp/github/esp8266_freertos/build/gpio/libgpio.a
  /root/esp/github/esp8266_freertos/build/heap/libheap.a
  /root/esp/github/esp8266_freertos/build/http_parser/libhttp_parser.a
  /root/esp/github/esp8266_freertos/build/httpd/libhttpd.a
  /root/esp/github/esp8266_freertos/build/jsmn/libjsmn.a
  /root/esp/github/esp8266_freertos/build/json/libjson.a
+ /root/esp/github/esp8266_freertos/build/key/libkey.a
  /root/esp/github/esp8266_freertos/build/libsodium/liblibsodium.a
  /root/esp/github/esp8266_freertos/build/log/liblog.a
  /root/esp/github/esp8266_freertos/build/lwip/liblwip.a
@@ -35,6 +35,7 @@
  /root/esp/github/esp8266_freertos/build/nvs_flash/libnvs_flash.a
  /root/esp/github/esp8266_freertos/build/openssl/libopenssl.a
  /root/esp/github/esp8266_freertos/build/ota/libota.a
+ /root/esp/github/esp8266_freertos/build/output/liboutput.a
  /root/esp/github/esp8266_freertos/build/protobuf-c/libprotobuf-c.a
  /root/esp/github/esp8266_freertos/build/protocomm/libprotocomm.a
  /root/esp/github/esp8266_freertos/build/pthread/libpthread.a

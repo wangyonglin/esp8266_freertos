@@ -14,8 +14,8 @@
 extern "C"
 {
 #endif
-    esp_err_t objFlashWifiSet(wifi_config_t *cfg);
-    esp_err_t objFlashWifiGet(wifi_config_t *cfg);
+    esp_err_t obj_flash_wifi_set(wifi_config_t *cfg);
+    esp_err_t obj_flash_wifi_get(wifi_config_t *cfg);
 
     int16_t objFlashBootGet(void);
     esp_err_t objFlashBootSet(int16_t val);

@@ -17,7 +17,7 @@
 extern "C"
 {
 #endif
-esp_err_t objAdapterInit(void);
+esp_err_t obj_wifi_adapter_init();
 #ifdef __cplusplus
 }
 #endif

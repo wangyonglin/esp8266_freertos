@@ -2,7 +2,6 @@
 #include <wangyonglin/esp.h>
 #include <wangyonglin/wangyonglin.h>
 static const char *TAG = "GPIO";
-
 static xQueueHandle gpio_evt_queue = NULL;
 static void gpio_isr_handler(void *arg)
 {
@@ -13,7 +12,7 @@ static void gpio_isr_handler(void *arg)
 static void gpio_task_example(void *arg)
 {
     uint32_t io;
-    objGpio_cb_t callback = (objGpio_cb_t)arg;
+    key_click_cb_t pfnKeyClickCallback = (key_click_cb_t)arg;
     BaseType_t press_key = pdFALSE;
     BaseType_t lift_key = pdFALSE;
     int64_t backup_time = 0;
@@ -26,6 +25,7 @@ static void gpio_task_example(void *arg)
             {
                 press_key = pdTRUE;
                 backup_time = esp_timer_get_time();
+
                 //如果当前GPIO口的电平已经记录为按下，则开始减去上次按下按键的时间点
             }
             else if (press_key)
@@ -41,30 +41,34 @@ static void gpio_task_example(void *arg)
                 press_key = pdFALSE;
                 lift_key = pdFALSE;
 
-                //如果大于1s则回调长按，否则就短按回调
-                if (backup_time > 6000000)
-                {
-                    ESP_LOGI(TAG, "长按触发");
-                    callback(KEY_LONG_PRESS, io);
+                if (backup_time > 9000000)
+                { /* 30m long long press */
+                    pfnKeyClickCallback(KEY_GPIO_LL_PRESS_EVT);
                 }
                 else
                 {
-                    ESP_LOGI(TAG, "短按触发");
-                    callback(KEY_SHORT_PRESS, io);
+                    if (backup_time > 6000000)
+                    { /*30m long press */
+
+                        pfnKeyClickCallback(KEY_GPIO_L_PRESS_EVT);
+                    }
+                    else
+                    {
+                        pfnKeyClickCallback(KEY_GPIO_S_PRESS_EVT);
+                    }
                 }
             }
         }
     }
 }
 
-esp_err_t objGpioInputInit(uint32_t io, objGpio_cb_t cb)
+esp_err_t obj_key_init(uint32_t io, key_click_cb_t cb)
 {
-
     gpio_config_t io_conf;
     io_conf.intr_type = GPIO_INTR_POSEDGE;
     io_conf.pin_bit_mask = (1ULL << io);
     io_conf.mode = GPIO_MODE_INPUT;
-    io_conf.pull_up_en = 1;
+    io_conf.pull_up_en = 1; //使能上拉
     gpio_config(&io_conf);
     gpio_set_intr_type(io, GPIO_INTR_ANYEDGE);
     gpio_evt_queue = xQueueCreate(10, sizeof(uint32_t));
@@ -72,34 +76,4 @@ esp_err_t objGpioInputInit(uint32_t io, objGpio_cb_t cb)
     gpio_install_isr_service(0);
     gpio_isr_handler_add(io, gpio_isr_handler, (void *)io);
     return ESP_OK;
-}
-esp_err_t objGpioOutputInit(uint32_t pin_bit_mask)
-{
-    gpio_config_t io_conf;                 //创建一个GPIO结构体
-    io_conf.intr_type = GPIO_INTR_DISABLE; //失能中断服务
-    io_conf.mode = GPIO_MODE_OUTPUT;       //设置成输出模式
-    io_conf.pin_bit_mask = pin_bit_mask;   //指定要配置的GPIO
-    io_conf.pull_down_en = 0;              //不使能下拉
-    io_conf.pull_up_en = 0;                //不使能上拉
-    gpio_config(&io_conf);                 //配置GPIO
-    return ESP_OK;
-}
-esp_err_t objGpioOutputSet(uint32_t io, uint32_t level)
-{
-    return gpio_set_level(io, level);
-}
-esp_err_t objGpioOutputChange(uint32_t io)
-{
-    esp_err_t err;
-    uint32_t ret;
-    ret = gpio_get_level(io);
-    if (ret == 1)
-    {
-        err = gpio_set_level(io, 0);
-    }
-    else
-    {
-        err = gpio_set_level(io, 1);
-    }
-    return err;
 }

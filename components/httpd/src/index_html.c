@@ -20,7 +20,7 @@ esp_err_t index_html(httpd_req_t *req)
     return ESP_OK;
 }
 
-void wang_httpd_index_html(wang_httpd_t *httpd, const char *uri)
+void obj_httpd_index_html(obj_httpd_t *httpd, const char *uri)
 {
     httpd_uri_t uri_t = {
         .uri = uri,

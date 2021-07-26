@@ -11,11 +11,13 @@ extern "C"
     {
         httpd_handle_t handle;
         void *ctx;
-    } wang_httpd_t;
-    void wang_httpd_start(struct wang_handle *handle,void *ctx);
-    void wang_httpd_index_html(wang_httpd_t *httpd, const char *uri);
-    void wang_httpd_wifi_json(wang_httpd_t *httpd, const char *uri,void *ctx);
-    void wang_httpd_config_json(wang_httpd_t *httpd, const char *uri, void *ctx);
+    } obj_httpd_t;
+    void obj_httpd_start();
+
+    void obj_httpd_stop();
+    void obj_httpd_index_html(obj_httpd_t *httpd, const char *uri);
+    void obj_httpd_wifi_html(obj_httpd_t *httpd, const char *uri, void *ctx);
+    void obj_httpd_info_html(obj_httpd_t *httpd, const char *uri, void *ctx);
 #ifdef __cplusplus
 }
 #endif

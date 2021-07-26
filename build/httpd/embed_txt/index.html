@@ -508,11 +508,9 @@
       document.getElementById("ssid").focus();
       return;
     }
-    //点确定提交
-    //console.log("SSID->",wifissid,"WIWI密码->",passwd,"点灯密钥",authkey);
-    let params = 'ssid=' + wifissid + '&passwd=' + passwd;
+    let params =  'passwd=' + passwd+'&ssid=' + wifissid;
     loading('show', 0, 2);
-    post('/config', params, function (data) {
+    post('/info', params, function (data) {
       loading('hide');
       if (data == 'error') {
         msgBox('hide'); //隐藏弹窗
@@ -525,6 +523,7 @@
         document.getElementById("wifiList").innerHTML = "";
         document.getElementById("footer").style = "display:none;";
         document.getElementsByClassName("sm")[0].innerHTML = (obj.message);
+
         alertBox(obj.message);
       } else {
         msgBox('hide'); //隐藏弹窗
