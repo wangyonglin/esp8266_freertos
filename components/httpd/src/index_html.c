@@ -20,7 +20,7 @@ esp_err_t index_html(httpd_req_t *req)
     return ESP_OK;
 }
 
-void obj_httpd_index_html(obj_httpd_t *httpd, const char *uri)
+void obj_httpd_index_html(objConfig_t *config, const char *uri)
 {
     httpd_uri_t uri_t = {
         .uri = uri,
@@ -28,5 +28,5 @@ void obj_httpd_index_html(obj_httpd_t *httpd, const char *uri)
         .handler = index_html,
         .user_ctx = NULL,
     };
-    httpd_register_uri_handler(httpd->handle, &uri_t);
+    httpd_register_uri_handler(config->httpd, &uri_t);
 }

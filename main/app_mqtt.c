@@ -22,8 +22,8 @@ objMessage_t message;
 static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event_id, void *event_data)
 {
     ESP_LOGD(TAG, "Event dispatched from event loop base=%s, event_id=%d", base, event_id);
+    objConfig_t *config=(objConfig_t *)handler_args;
     esp_mqtt_event_handle_t event = (esp_mqtt_event_handle_t)event_data;
-    objQueue_t *queue = (objQueue_t *)handler_args;
     int msg_id;
     switch (event_id)
     {
@@ -53,7 +53,7 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
         {
             message.level = 0x0001;
             memcpy(message.pvBuffer, event->data, event->data_len);
-            if (xQueueSendToBack(queue->xQueue, &message, NULL) != pdPASS)
+            if (xQueueSendToBack(config->xQueueMqtt, &message, NULL) != pdPASS)
             {
                 ESP_LOGI(TAG, "send rf433 queue fail");
             }
@@ -62,7 +62,7 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
         {
             message.level = 0x0002;
             memcpy(message.pvBuffer, event->data, event->data_len);
-            if (xQueueSendToBack(queue->xQueue, &message, NULL) != pdPASS)
+            if (xQueueSendToBack(config->xQueueMqtt, &message, NULL) != pdPASS)
             {
                 ESP_LOGI(TAG, "send trun queue fail");
             }
@@ -78,16 +78,15 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
     }
 }
 
-void obj_mqtt_start(objQueue_t *queue)
+
+void objMqttInit(objConfig_t *config)
 {
     esp_mqtt_client_config_t mqtt_cfg = {
-        .client_id = objChipId(),
+        .client_id = obj_chip_id(),
         .uri = WANGYONGLIN_MQTT_BROKER_URL,
         .username = WANGYONGLIN_MQTT_USERNAME,
         .password = WANGYONGLIN_MQTT_PASSWORD};
-    esp_mqtt_client_handle_t client = esp_mqtt_client_init(&mqtt_cfg);
-
-    esp_mqtt_client_register_event(client, ESP_EVENT_ANY_ID, mqtt_event_handler, queue);
-    esp_mqtt_client_start(client);
-    //esp_mqtt_client_stop(client);
+    config->client = esp_mqtt_client_init(&mqtt_cfg);
+    esp_mqtt_client_register_event(config->client, ESP_EVENT_ANY_ID, mqtt_event_handler, config);
+ 
 }

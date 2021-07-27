@@ -1,7 +1,7 @@
 
 #include <wangyonglin/esp.h>
 #include <wangyonglin/wangyonglin.h>
-static const char *TAG = "GPIO";
+
 static xQueueHandle gpio_evt_queue = NULL;
 static void gpio_isr_handler(void *arg)
 {
@@ -12,7 +12,7 @@ static void gpio_isr_handler(void *arg)
 static void gpio_task_example(void *arg)
 {
     uint32_t io;
-    key_click_cb_t pfnKeyClickCallback = (key_click_cb_t)arg;
+    objConfig_t *config = (objConfig_t *)arg;
     BaseType_t press_key = pdFALSE;
     BaseType_t lift_key = pdFALSE;
     int64_t backup_time = 0;
@@ -43,18 +43,18 @@ static void gpio_task_example(void *arg)
 
                 if (backup_time > 9000000)
                 { /* 30m long long press */
-                    pfnKeyClickCallback(KEY_GPIO_LL_PRESS_EVT);
+                    config->pfnKeyClickCallback(config, KEY_GPIO_LL_PRESS_EVT);
                 }
                 else
                 {
                     if (backup_time > 6000000)
                     { /*30m long press */
 
-                        pfnKeyClickCallback(KEY_GPIO_L_PRESS_EVT);
+                        config->pfnKeyClickCallback(config, KEY_GPIO_L_PRESS_EVT);
                     }
                     else
                     {
-                        pfnKeyClickCallback(KEY_GPIO_S_PRESS_EVT);
+                        config->pfnKeyClickCallback(config, KEY_GPIO_S_PRESS_EVT);
                     }
                 }
             }
@@ -62,8 +62,9 @@ static void gpio_task_example(void *arg)
     }
 }
 
-esp_err_t obj_key_init(uint32_t io, key_click_cb_t cb)
+esp_err_t objClickInit(objConfig_t *config, uint32_t io, objClickCallback_t cb)
 {
+    config->pfnKeyClickCallback = cb;
     gpio_config_t io_conf;
     io_conf.intr_type = GPIO_INTR_POSEDGE;
     io_conf.pin_bit_mask = (1ULL << io);
@@ -72,7 +73,7 @@ esp_err_t obj_key_init(uint32_t io, key_click_cb_t cb)
     gpio_config(&io_conf);
     gpio_set_intr_type(io, GPIO_INTR_ANYEDGE);
     gpio_evt_queue = xQueueCreate(10, sizeof(uint32_t));
-    xTaskCreate(gpio_task_example, "gpio_task_example", 2048, cb, 10, NULL);
+    xTaskCreate(gpio_task_example, "gpio_task_example", 2048, config, 10, NULL);
     gpio_install_isr_service(0);
     gpio_isr_handler_add(io, gpio_isr_handler, (void *)io);
     return ESP_OK;

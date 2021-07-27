@@ -1,74 +1,68 @@
-#include <sys/param.h>
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "esp_system.h"
-#include "esp_log.h"
-#include "esp_netif.h"
-#include "esp_event.h"
-#include "nvs.h"
-#include "nvs_flash.h"
-#include <esp_http_server.h>
-#include <wangyonglin/httpd.h>
+#include <wangyonglin/esp.h>
+#include <wangyonglin/wangyonglin.h>
 
-const char *TAG = "WANGYONGLIN:HTTPD->";
-obj_httpd_t httpd;
+const char *TAG = "httpd";
 
-void start_webserver(obj_httpd_t *httpd)
+
+void start_webserver(objConfig_t *config)
 {
 
-    httpd_config_t config = HTTPD_DEFAULT_CONFIG();
-
-    ESP_LOGI(TAG, "Starting server on port: '%d'", config.server_port);
-    if (httpd_start(&httpd->handle, &config) == ESP_OK)
+    httpd_config_t cfg = HTTPD_DEFAULT_CONFIG();
+    cfg.send_wait_timeout = 8;
+    cfg.recv_wait_timeout = 8;
+    ESP_LOGI(TAG, "Starting server on port: '%d'", cfg.server_port);
+    if (httpd_start(&config->httpd, &cfg) == ESP_OK)
     {
         ESP_LOGI(TAG, "Registering URI handlers");
-        obj_httpd_index_html(httpd, "/");
-        obj_httpd_wifi_html(httpd, "/wifi", NULL);
-        obj_httpd_info_html(httpd, "/info", NULL);
+        obj_httpd_index_html(config, "/");
+        obj_httpd_wifi_html(config, "/wifi", NULL);
+        obj_httpd_info_html(config, "/info", NULL);
         return;
     }
 
     ESP_LOGI(TAG, "Error starting server!");
     return;
 }
-void stop_webserver(httpd_handle_t handle)
+void stop_webserver(objConfig_t *config)
 {
     // Stop the httpd server
-    httpd_stop(handle);
+    httpd_stop(config->httpd);
 }
 
 static void disconnect_handler(void *arg, esp_event_base_t event_base,
                                int32_t event_id, void *event_data)
 {
-    obj_httpd_t *httpd = (obj_httpd_t *)arg;
-    if (httpd->handle)
+    objConfig_t *config = (objConfig_t *)arg;
+    if (config->httpd)
     {
         ESP_LOGI(TAG, "Stopping webserver");
-        stop_webserver(httpd->handle);
-        httpd->handle = NULL;
+        stop_webserver(config);
+        config->httpd = NULL;
     }
 }
 
 static void connect_handler(void *arg, esp_event_base_t event_base,
                             int32_t event_id, void *event_data)
 {
-    obj_httpd_t *httpd = (obj_httpd_t *)arg;
-    if (httpd->handle == NULL)
+    objConfig_t *config = (objConfig_t *)arg;
+    if (config->httpd == NULL)
     {
         ESP_LOGI(TAG, "Starting webserver");
-        start_webserver(httpd);
+        start_webserver(config);
     }
 }
 
-void obj_httpd_start()
+esp_err_t objHttpdStart(objConfig_t *config)
 {
-    ESP_LOGI(TAG, "obj_httpd_start");
-    ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_STA_GOT_IP, &connect_handler, &httpd));
-    ESP_ERROR_CHECK(esp_event_handler_register(WIFI_EVENT, WIFI_EVENT_STA_DISCONNECTED, &disconnect_handler, &httpd));
-    start_webserver(&httpd);
+    ESP_LOGI(TAG, "httpd start");
+    ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_STA_GOT_IP, &connect_handler, config));
+    ESP_ERROR_CHECK(esp_event_handler_register(WIFI_EVENT, WIFI_EVENT_STA_DISCONNECTED, &disconnect_handler, config));
+    start_webserver(config);
+    return ESP_OK;
 }
-void obj_httpd_stop()
+esp_err_t objHttpdStop(objConfig_t *config)
 {
-    ESP_LOGI(TAG, "obj_httpd_stop");
-    stop_webserver(&httpd);
+    ESP_LOGI(TAG, "https stop");
+    stop_webserver(config);
+    return ESP_OK;
 }

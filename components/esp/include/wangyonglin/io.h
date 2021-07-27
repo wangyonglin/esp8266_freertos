@@ -5,15 +5,6 @@
 extern "C"
 {
 #endif
-    typedef enum
-    {
-        objIOBoot = 4,
-        objIOButton = 14
-    } objGPIO_t;
-    typedef uint32_t objIO_t;
-
-#define objIOHigh ((objIO_t)1)
-#define objIOLow ((objIO_t)0)
 #define IO00 0
 #define IO01 1
 #define IO02 2

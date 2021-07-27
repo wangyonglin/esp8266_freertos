@@ -30,8 +30,11 @@ src/rf433.o: \
  /root/esp/ESP8266_RTOS_SDK/components/heap/include/esp_heap_caps.h \
  /root/esp/ESP8266_RTOS_SDK/components/esp_common/include/esp_err.h \
  /root/esp/ESP8266_RTOS_SDK/components/heap/port/esp8266/include/esp_heap_config.h \
+ /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/event_groups.h \
+ /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/timers.h \
  /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/task.h \
  /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/private/list.h \
+ /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/task.h \
  /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/semphr.h \
  /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/queue.h \
  /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/queue.h \
@@ -115,15 +118,11 @@ src/rf433.o: \
  /root/esp/github/esp8266_freertos/components/uart/include/wangyonglin/uart.h \
  /root/esp/github/esp8266_freertos/components/httpd/include/wangyonglin/httpd.h \
  /root/esp/github/esp8266_freertos/components/wifi/include/wangyonglin/wifi.h \
- /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/event_groups.h \
- /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/timers.h \
- /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/task.h \
  /root/esp/github/esp8266_freertos/main/include/wangyonglin/mqtt.h \
  /root/esp/github/esp8266_freertos/components/queue/include/wangyonglin/queue.h \
  /root/esp/github/esp8266_freertos/components/ota/include/wangyonglin/ota.h \
  /root/esp/github/esp8266_freertos/components/flash/include/wangyonglin/flash.h \
  /root/esp/github/esp8266_freertos/components/string/include/wangyonglin/string.h \
- /root/esp/github/esp8266_freertos/components/esp/include/wangyonglin/adapter.h \
  /root/esp/github/esp8266_freertos/components/key/include/wangyonglin/key.h \
  /root/esp/github/esp8266_freertos/components/output/include/wangyonglin/output.h
 
@@ -187,9 +186,15 @@ src/rf433.o: \
 
 /root/esp/ESP8266_RTOS_SDK/components/heap/port/esp8266/include/esp_heap_config.h:
 
+/root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/event_groups.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/timers.h:
+
 /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/task.h:
 
 /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/private/list.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/task.h:
 
 /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/semphr.h:
 
@@ -357,12 +362,6 @@ src/rf433.o: \
 
 /root/esp/github/esp8266_freertos/components/wifi/include/wangyonglin/wifi.h:
 
-/root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/event_groups.h:
-
-/root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/timers.h:
-
-/root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/task.h:
-
 /root/esp/github/esp8266_freertos/main/include/wangyonglin/mqtt.h:
 
 /root/esp/github/esp8266_freertos/components/queue/include/wangyonglin/queue.h:
@@ -372,8 +371,6 @@ src/rf433.o: \
 /root/esp/github/esp8266_freertos/components/flash/include/wangyonglin/flash.h:
 
 /root/esp/github/esp8266_freertos/components/string/include/wangyonglin/string.h:
-
-/root/esp/github/esp8266_freertos/components/esp/include/wangyonglin/adapter.h:
 
 /root/esp/github/esp8266_freertos/components/key/include/wangyonglin/key.h:
 

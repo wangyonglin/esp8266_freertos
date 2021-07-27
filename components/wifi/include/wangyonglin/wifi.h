@@ -10,10 +10,7 @@
 extern "C"
 {
 #endif
-    esp_err_t obj_wifi_scan_parameters(wifi_scan_config_t *config);
-    esp_err_t obj_wifi_get_parameters(wifi_interface_t interface, wifi_config_t *conf);
-    esp_err_t obj_wifi_apsta_start();
-    esp_err_t obj_wifi_sta_start();
+    esp_err_t objWifiStart(objConfig_t *config,objWifiCallback_t cb);
 #ifdef __cplusplus
 }
 #endif

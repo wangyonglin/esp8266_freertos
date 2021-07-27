@@ -19,8 +19,8 @@ extern "C"
 #define KEY_GPIO_L_PRESS_EVT 0x06  //长按事件
 #define KEY_GPIO_S_PRESS_EVT 0x03  //短按事件
 
-    typedef void (*key_click_cb_t)(uint8_t event);
-    esp_err_t obj_key_init(uint32_t io, key_click_cb_t cb);
+    
+    esp_err_t objClickInit(objConfig_t *config,uint32_t io, objClickCallback_t cb);
 #ifdef __cplusplus
 }
 #endif

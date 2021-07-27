@@ -16,10 +16,9 @@ static const char *TAG = "wifi.html";
 cJSON *root = NULL;
 esp_err_t wifi_html(httpd_req_t *req)
 {
-    wifi_scan_config_t cfg;
-    obj_wifi_scan_parameters(&cfg);
-    esp_wifi_scan_start(&cfg, 0);
-    vTaskDelay(2000 / portTICK_PERIOD_MS);
+    objConfig_t *config=(objConfig_t*)req->user_ctx;
+    esp_wifi_scan_start(&config->wifi_scan_config, 0);
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
     esp_err_t err;
     httpd_resp_set_type(req, "application/json; charset=utf-8");
     root = cJSON_CreateObject();
@@ -48,7 +47,7 @@ esp_err_t wifi_html(httpd_req_t *req)
             char *out = cJSON_Print(root);
             httpd_resp_send(req, out, strlen(out));
             printf(out);
-            //free(out);
+            free(out);
         }
         free(list);
     }
@@ -61,7 +60,7 @@ esp_err_t wifi_html(httpd_req_t *req)
         char *out = cJSON_Print(root);
         httpd_resp_send(req, out, strlen(out));
         printf(out);
-        //free(out);
+        free(out);
     }
     ESP_LOGI(TAG, "结束扫描");
     esp_wifi_scan_stop();
@@ -70,13 +69,13 @@ esp_err_t wifi_html(httpd_req_t *req)
     return err;
 }
 
-void obj_httpd_wifi_html(obj_httpd_t *httpd, const char *uri, void *ctx)
+void obj_httpd_wifi_html(objConfig_t *config, const char *uri, void *ctx)
 {
     httpd_uri_t uri_t = {
         .uri = uri,
         .method = HTTP_GET,
         .handler = wifi_html,
-        .user_ctx = ctx,
+        .user_ctx = config,
     };
-    httpd_register_uri_handler(httpd->handle, &uri_t);
+    httpd_register_uri_handler(config->httpd, &uri_t);
 }

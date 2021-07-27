@@ -75,6 +75,9 @@ src/wifi_html.o: \
  /root/esp/ESP8266_RTOS_SDK/components/http_parser/include/http_parser.h \
  /root/esp/github/esp8266_freertos/components/httpd/include/wangyonglin/httpd.h \
  /root/esp/github/esp8266_freertos/components/esp/include/wangyonglin/esp.h \
+ /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/event_groups.h \
+ /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/timers.h \
+ /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/task.h \
  /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_wifi.h \
  /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_wifi_types.h \
  /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/err.h \
@@ -112,9 +115,6 @@ src/wifi_html.o: \
  /root/esp/ESP8266_RTOS_SDK/components/json/cJSON/cJSON.h \
  /root/esp/github/esp8266_freertos/components/esp/include/wangyonglin/io.h \
  /root/esp/github/esp8266_freertos/components/wifi/include/wangyonglin/wifi.h \
- /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/event_groups.h \
- /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/timers.h \
- /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/task.h \
  /root/esp/github/esp8266_freertos/components/flash/include/wangyonglin/flash.h
 
 /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/FreeRTOS.h:
@@ -267,6 +267,12 @@ src/wifi_html.o: \
 
 /root/esp/github/esp8266_freertos/components/esp/include/wangyonglin/esp.h:
 
+/root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/event_groups.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/timers.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/task.h:
+
 /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_wifi.h:
 
 /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_wifi_types.h:
@@ -340,12 +346,6 @@ src/wifi_html.o: \
 /root/esp/github/esp8266_freertos/components/esp/include/wangyonglin/io.h:
 
 /root/esp/github/esp8266_freertos/components/wifi/include/wangyonglin/wifi.h:
-
-/root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/event_groups.h:
-
-/root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/timers.h:
-
-/root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/task.h:
 
 /root/esp/github/esp8266_freertos/components/flash/include/wangyonglin/flash.h:
 /root/esp/github/esp8266_freertos/components/httpd/src/wifi_html.c:

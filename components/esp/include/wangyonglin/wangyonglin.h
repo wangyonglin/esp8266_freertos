@@ -11,7 +11,7 @@
 #include <wangyonglin/flash.h>
 #include <wangyonglin/queue.h>
 #include <wangyonglin/string.h>
-#include <wangyonglin/adapter.h>
+
 #include <wangyonglin/key.h>
 #include <wangyonglin/output.h>
 #ifdef __cplusplus

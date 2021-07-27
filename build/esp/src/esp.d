@@ -29,8 +29,11 @@ src/esp.o: /root/esp/github/esp8266_freertos/components/esp/src/esp.c \
  /root/esp/ESP8266_RTOS_SDK/components/heap/include/esp_heap_caps.h \
  /root/esp/ESP8266_RTOS_SDK/components/esp_common/include/esp_err.h \
  /root/esp/ESP8266_RTOS_SDK/components/heap/port/esp8266/include/esp_heap_config.h \
+ /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/event_groups.h \
+ /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/timers.h \
  /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/task.h \
  /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/private/list.h \
+ /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/task.h \
  /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/semphr.h \
  /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/queue.h \
  /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/queue.h \
@@ -170,9 +173,15 @@ src/esp.o: /root/esp/github/esp8266_freertos/components/esp/src/esp.c \
 
 /root/esp/ESP8266_RTOS_SDK/components/heap/port/esp8266/include/esp_heap_config.h:
 
+/root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/event_groups.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/timers.h:
+
 /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/task.h:
 
 /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/private/list.h:
+
+/root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/task.h:
 
 /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/semphr.h:
 
@@ -329,4 +338,3 @@ src/esp.o: /root/esp/github/esp8266_freertos/components/esp/src/esp.c \
 /root/esp/ESP8266_RTOS_SDK/components/json/cJSON/cJSON.h:
 
 /root/esp/github/esp8266_freertos/components/esp/include/wangyonglin/io.h:
-/root/esp/github/esp8266_freertos/components/esp/src/esp.c:

@@ -9,7 +9,7 @@
 static const char *TAG = "FLASH-WIFI";
 static const char *NAMESPACE = "WIFIINFO";
 
-esp_err_t obj_flash_wifi_get(wifi_config_t *cfg)
+esp_err_t objFlashWifiGet(wifi_config_t *config)
 {
     nvs_handle handle;
     size_t len = sizeof(wifi_config_t);
@@ -19,9 +19,9 @@ esp_err_t obj_flash_wifi_get(wifi_config_t *cfg)
         ESP_ERROR_CHECK(err);
         return err;
     }
-    if ((err = nvs_get_blob(handle, NAMESPACE, cfg, &len)) == ESP_ERR_NVS_NOT_FOUND)
+    if ((err = nvs_get_blob(handle, NAMESPACE, config, &len)) == ESP_ERR_NVS_NOT_FOUND)
     {
-        if ((err = nvs_set_blob(handle, NAMESPACE, cfg, sizeof(wifi_config_t))) != ESP_OK)
+        if ((err = nvs_set_blob(handle, NAMESPACE, config, sizeof(wifi_config_t))) != ESP_OK)
         {
             ESP_ERROR_CHECK(err);
             nvs_close(handle);
@@ -39,7 +39,7 @@ esp_err_t obj_flash_wifi_get(wifi_config_t *cfg)
     return err;
 }
 
-esp_err_t obj_flash_wifi_set(wifi_config_t *cfg)
+esp_err_t objFlashWifiSet(wifi_config_t *cfg)
 {
     nvs_handle handle;
     esp_err_t err = ESP_OK;

@@ -10,10 +10,9 @@
  */
 #include <wangyonglin/wangyonglin.h>
 #include <wangyonglin/esp.h>
-
 static const char *TAG = "main";
-objQueue_t queue;
-void obj_queue_handler(int level, uint8_t *data, int len)
+objConfig_t config;
+void objMqttCallback(objConfig_t *config,int level, uint8_t *data, int len)
 {
     switch (level)
     {
@@ -37,7 +36,7 @@ void obj_queue_handler(int level, uint8_t *data, int len)
         break;
     }
 }
-void key_click_handler(uint8_t event)
+void key_click_handler(objConfig_t *config, uint8_t event)
 {
     switch (event)
     {
@@ -50,9 +49,30 @@ void key_click_handler(uint8_t event)
         break;
     case KEY_GPIO_LL_PRESS_EVT:
         ESP_LOGI(TAG, "超长按事件");
-        objFlashBootSet(0);
+        objBootSet(config, pdFALSE);
         vTaskDelay(3000 / portTICK_PERIOD_MS);
         esp_restart();
+        break;
+    default:
+        break;
+    }
+}
+
+void objWifiCallback(objConfig_t *config, objRouteId_t id)
+{
+    switch (id)
+    {
+    case ROUTE_STA_GOT_IP:
+        esp_mqtt_client_start(config->client);
+        break;
+    case ROUTE_STA_DISCONNECTED:
+        esp_mqtt_client_stop(config->client);
+        break;
+    case ROUTE_AP_START:
+        objHttpdStart(config);
+        break;
+    case ROUTE_AP_STOP:
+        objHttpdStop(config);
         break;
     default:
         break;
@@ -61,18 +81,15 @@ void key_click_handler(uint8_t event)
 void app_main()
 {
     objSystemInit();
+    objConfigInit(&config);
     obj_output_init(IO00);
-    obj_queue_init(&queue,obj_queue_handler);
+    objQueueInit(&config,objMqttCallback);
 
-    obj_key_init(IO02, key_click_handler);
-    if (objFlashBootGet() == 0)
+    objClickInit(&config, IO02, key_click_handler);
+
+    objWifiStart(&config, objWifiCallback);
+    if (config.bits == pdTRUE)
     {
-        obj_wifi_apsta_start();
-        obj_httpd_start();
-    }
-    else
-    {
-        obj_wifi_sta_start();
-        obj_mqtt_start(&queue);
+        objMqttInit(&config);
     }
 }

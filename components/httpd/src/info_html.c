@@ -15,6 +15,7 @@ static const char *TAG = "info.html";
 
 esp_err_t info_html(httpd_req_t *req)
 {
+    objConfig_t *config = (objConfig_t *)req->user_ctx;
     char content[100] = {0};
     size_t recv_size = MIN(req->content_len, sizeof(content));
     int ret = httpd_req_recv(req, content, recv_size);
@@ -27,48 +28,36 @@ esp_err_t info_html(httpd_req_t *req)
         return ESP_FAIL;
     }
 
-    wifi_config_t cfg;
-    bzero(&cfg, sizeof(wifi_config_t));
-    httpd_query_key_value(content, "ssid", (char *)cfg.sta.ssid, sizeof(cfg.sta.ssid));
-    httpd_query_key_value(content, "passwd", (char *)cfg.sta.password, sizeof(cfg.sta.ssid));
-    ESP_LOGE(TAG, "SSID[%s][%d]", (char *)cfg.sta.ssid, strlen((char *)cfg.sta.ssid));
-    ESP_LOGE(TAG, "passwd[%s][%d]", (char *)cfg.sta.password, strlen((char *)cfg.sta.password));
-    ESP_ERROR_CHECK(esp_wifi_set_config(ESP_IF_WIFI_STA, &cfg));
+    
+    httpd_query_key_value(content, "ssid", (char *)config->wifi_config_sta.sta.ssid, sizeof(config->wifi_config_sta.sta.ssid));
+    httpd_query_key_value(content, "passwd", (char *)config->wifi_config_sta.sta.password, sizeof(config->wifi_config_sta.sta.ssid));
+    ESP_LOGE(TAG, "SSID[%s][%d]", (char *)config->wifi_config_sta.sta.ssid, strlen((char *)config->wifi_config_sta.sta.ssid));
+    ESP_LOGE(TAG, "passwd[%s][%d]", (char *)config->wifi_config_sta.sta.password, strlen((char *)config->wifi_config_sta.sta.password));
+    ESP_ERROR_CHECK(esp_wifi_set_config(ESP_IF_WIFI_STA, &config->wifi_config_sta));
     //vTaskDelay(1000 / portTICK_PERIOD_MS);
-    if ( objFlashBootSet(1) == 0)
-    { 
+   
         cJSON *root = cJSON_CreateObject();
-        ESP_ERROR_CHECK(obj_flash_wifi_set(&cfg));
+        ESP_ERROR_CHECK(objWifiSTASet(config));
+        objBootSet(config,pdTRUE);
         cJSON_AddNumberToObject(root, "code", 200);
-        cJSON_AddStringToObject(root, "message", "配置成功,3秒自动重启");
+        cJSON_AddStringToObject(root, "message", "配置成功,自动重启");
         char *out = cJSON_Print(root);
         httpd_resp_send(req, out, strlen(out));
         cJSON_Delete(root);
         free(out);
-        vTaskDelay(3000 / portTICK_PERIOD_MS);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
         esp_restart();
-    }
-   /*
-    else if (objFlashBootGet() == 1)
-    {
-        cJSON *root = cJSON_CreateObject();
-        cJSON_AddNumberToObject(root, "code", 500);
-        cJSON_AddStringToObject(root, "message", "配置失败");
-        char *out = cJSON_Print(root);
-        httpd_resp_send(req, out, strlen(out));
-        cJSON_Delete(root);
-        free(out);
-    }
-    */
+    
+ 
     return ESP_OK;
 }
-void obj_httpd_info_html(obj_httpd_t *httpd, const char *uri, void *ctx)
+void obj_httpd_info_html(objConfig_t *config, const char *uri, void *ctx)
 {
     httpd_uri_t uri_t = {
         .uri = uri,
         .method = HTTP_POST,
         .handler = info_html,
-        .user_ctx = ctx,
+        .user_ctx = config,
     };
-    httpd_register_uri_handler(httpd->handle, &uri_t);
+    httpd_register_uri_handler(config->httpd, &uri_t);
 }
