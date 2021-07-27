@@ -40,6 +40,7 @@
  /root/esp/github/esp8266_freertos/build/protocomm/libprotocomm.a
  /root/esp/github/esp8266_freertos/build/pthread/libpthread.a
  /root/esp/github/esp8266_freertos/build/queue/libqueue.a
+ /root/esp/github/esp8266_freertos/build/rf433/librf433.a
  /root/esp/github/esp8266_freertos/build/spi_flash/libspi_flash.a
  /root/esp/github/esp8266_freertos/build/spi_ram/libspi_ram.a
  /root/esp/github/esp8266_freertos/build/spiffs/libspiffs.a

@@ -1,0 +1,8 @@
+# Automatically generated build file. Do not edit.
+COMPONENT_INCLUDES += $(PROJECT_PATH)/components/rf433/include
+COMPONENT_LDFLAGS += -L$(BUILD_DIR_BASE)/rf433 -lrf433
+COMPONENT_LINKER_DEPS += 
+COMPONENT_SUBMODULES += 
+COMPONENT_LIBRARIES += rf433
+COMPONENT_LDFRAGMENTS += 
+component-rf433-build: 
