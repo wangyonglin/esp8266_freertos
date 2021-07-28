@@ -11,16 +11,15 @@
 #include <wangyonglin/httpd.h>
 #include <wangyonglin/flash.h>
 #include <cJSON.h>
-static const char *TAG = "wifi.html";
-
+static const char *TAG = "/wifi.html";
 cJSON *root = NULL;
 esp_err_t wifi_html(httpd_req_t *req)
 {
-    objConfig_t *config=(objConfig_t*)req->user_ctx;
+    httpd_resp_set_type(req, "application/json; charset=utf-8");
+    objConfig_t *config = (objConfig_t *)req->user_ctx;
     esp_wifi_scan_start(&config->wifi_scan_config, 0);
     vTaskDelay(1000 / portTICK_PERIOD_MS);
     esp_err_t err;
-    httpd_resp_set_type(req, "application/json; charset=utf-8");
     root = cJSON_CreateObject();
     cJSON *wifi = NULL;
     cJSON *items = NULL;
@@ -36,7 +35,7 @@ esp_err_t wifi_html(httpd_req_t *req)
             cJSON_AddItemToObject(root, "wifi", wifi = cJSON_CreateArray());
             for (int i = 0; i < apCount; i++)
             {
-                if (strcmp((char*)list[i].ssid,"")!=0)
+                if (strcmp((char *)list[i].ssid, "") != 0)
                 {
                     cJSON_AddItemToArray(wifi, (items = cJSON_CreateObject()));
                     cJSON_AddStringToObject(items, "ssid", (char *)list[i].ssid);
@@ -44,8 +43,9 @@ esp_err_t wifi_html(httpd_req_t *req)
                     cJSON_AddNumberToObject(items, "authmode", list[i].authmode);
                 }
             }
+           
             char *out = cJSON_Print(root);
-            httpd_resp_send(req, out, strlen(out));
+            ESP_ERROR_CHECK(httpd_resp_send(req, out, strlen(out)));
             printf(out);
             free(out);
         }
@@ -69,13 +69,24 @@ esp_err_t wifi_html(httpd_req_t *req)
     return err;
 }
 
-void obj_httpd_wifi_html(objConfig_t *config, const char *uri, void *ctx)
+void objHttpdRegisterUriWifiHtml(objConfig_t *config)
 {
     httpd_uri_t uri_t = {
-        .uri = uri,
+        .uri = TAG,
         .method = HTTP_GET,
         .handler = wifi_html,
         .user_ctx = config,
     };
-    httpd_register_uri_handler(config->httpd, &uri_t);
+    if (httpd_register_uri_handler(config->httpd, &uri_t) == ESP_OK)
+    {
+        ESP_LOGI(TAG, "successfully registering the uri%s", TAG);
+    }
+}
+
+void objHttpdUnRegisterUriWifiHtml(objConfig_t *config)
+{
+    if (httpd_unregister_uri_handler(config->httpd, TAG, HTTP_GET) == ESP_OK)
+    {
+        ESP_LOGI(TAG, "successfully deregistering the uri%s", TAG);
+    }
 }

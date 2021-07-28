@@ -43,18 +43,18 @@ static void gpio_task_example(void *arg)
 
                 if (backup_time > 9000000)
                 { /* 30m long long press */
-                    config->pfnKeyClickCallback(config, KEY_GPIO_LL_PRESS_EVT);
+                    config->pfnClickCallback(config, KEY_GPIO_LL_PRESS_EVT);
                 }
                 else
                 {
                     if (backup_time > 6000000)
                     { /*30m long press */
 
-                        config->pfnKeyClickCallback(config, KEY_GPIO_L_PRESS_EVT);
+                        config->pfnClickCallback(config, KEY_GPIO_L_PRESS_EVT);
                     }
                     else
                     {
-                        config->pfnKeyClickCallback(config, KEY_GPIO_S_PRESS_EVT);
+                        config->pfnClickCallback(config, KEY_GPIO_S_PRESS_EVT);
                     }
                 }
             }
@@ -64,7 +64,7 @@ static void gpio_task_example(void *arg)
 
 esp_err_t objClickInit(objConfig_t *config, uint32_t io, objClickCallback_t cb)
 {
-    config->pfnKeyClickCallback = cb;
+    config->pfnClickCallback = cb;
     gpio_config_t io_conf;
     io_conf.intr_type = GPIO_INTR_POSEDGE;
     io_conf.pin_bit_mask = (1ULL << io);

@@ -32,6 +32,7 @@ esp_err_t objConfigInit(objConfig_t *config)
     objWifiAPInit(config);
     objWifiSTAInit(config);
     objBootGet(config);
+
     return ESP_OK;
 }
 esp_err_t objWifiAPInit(objConfig_t *config)
@@ -49,10 +50,12 @@ esp_err_t objWifiSTAInit(objConfig_t *config)
 {
     return objFlashWifiGet(&config->wifi_config_sta);
 }
-esp_err_t objWifiSTAGet(objConfig_t *config){
+esp_err_t objWifiSTAGet(objConfig_t *config)
+{
     return objFlashWifiGet(&config->wifi_config_sta);
 }
-esp_err_t objWifiSTASet(objConfig_t *config){
+esp_err_t objWifiSTASet(objConfig_t *config)
+{
     return objFlashWifiSet(&config->wifi_config_sta);
 }
 esp_err_t objWifiInit(objConfig_t *config)

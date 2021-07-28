@@ -58,7 +58,7 @@ extern "C"
     typedef struct objConfig objConfig_t;
     typedef void (*objClickCallback_t)(objConfig_t *config, uint8_t event);
     typedef void (*objWifiCallback_t)(objConfig_t *config, objRouteId_t id);
-     typedef void (*objMqttCallback_t)(objConfig_t *config,int level, uint8_t *data, int len);
+    typedef void (*objMqttCallback_t)(objConfig_t *config, int level, uint8_t *data, int len);
     struct objConfig
     {
         EventGroupHandle_t wifi_event_group;
@@ -75,8 +75,8 @@ extern "C"
         wifi_scan_config_t wifi_scan_config;
         BaseType_t bits;
         objRouteId_t id;
-        objClickCallback_t pfnKeyClickCallback;
-        objClickCallback_t pfnWifiCallback;
+        objClickCallback_t pfnClickCallback;
+        objWifiCallback_t pfnWifiCallback;
         objMqttCallback_t pfnMqttCallback;
     };
 

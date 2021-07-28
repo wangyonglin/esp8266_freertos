@@ -3,7 +3,6 @@
 
 const char *TAG = "httpd";
 
-
 void start_webserver(objConfig_t *config)
 {
 
@@ -13,19 +12,24 @@ void start_webserver(objConfig_t *config)
     ESP_LOGI(TAG, "Starting server on port: '%d'", cfg.server_port);
     if (httpd_start(&config->httpd, &cfg) == ESP_OK)
     {
-        ESP_LOGI(TAG, "Registering URI handlers");
-        obj_httpd_index_html(config, "/");
-        obj_httpd_wifi_html(config, "/wifi", NULL);
-        obj_httpd_info_html(config, "/info", NULL);
+        objHttpdRegisterUriPromiseMinJs(config);
+        objHttpdRegisterUriIndexCss(config);
+        objHttpdRegisterUriIndexHtml(config);
+        objHttpdRegisterUriInfoHtml(config);
+        objHttpdRegisterUriWifiHtml(config);
         return;
     }
-
     ESP_LOGI(TAG, "Error starting server!");
     return;
 }
 void stop_webserver(objConfig_t *config)
 {
     // Stop the httpd server
+    objHttpdUnRegisterUriPromiseMinJs(config);
+    objHttpdUnRegisterUriIndexCss(config);
+    objHttpdUnRegisterUriIndexHtml(config);
+    objHttpdUnRegisterUriInfoHtml(config);
+    objHttpdUnRegisterUriWifiHtml(config);
     httpd_stop(config->httpd);
 }
 
@@ -57,12 +61,16 @@ esp_err_t objHttpdStart(objConfig_t *config)
     ESP_LOGI(TAG, "httpd start");
     ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_STA_GOT_IP, &connect_handler, config));
     ESP_ERROR_CHECK(esp_event_handler_register(WIFI_EVENT, WIFI_EVENT_STA_DISCONNECTED, &disconnect_handler, config));
+
     start_webserver(config);
     return ESP_OK;
 }
 esp_err_t objHttpdStop(objConfig_t *config)
 {
+
     ESP_LOGI(TAG, "https stop");
+    ESP_ERROR_CHECK(esp_event_handler_unregister(IP_EVENT, IP_EVENT_STA_GOT_IP, &connect_handler));
+    ESP_ERROR_CHECK(esp_event_handler_unregister(WIFI_EVENT, WIFI_EVENT_STA_DISCONNECTED, &disconnect_handler));
     stop_webserver(config);
     return ESP_OK;
 }

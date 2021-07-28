@@ -9,9 +9,17 @@ extern "C"
 #endif
     esp_err_t objHttpdStart(objConfig_t *config);
     esp_err_t objHttpdStop(objConfig_t *config);
-    void obj_httpd_index_html(objConfig_t *config, const char *uri);
-    void obj_httpd_wifi_html(objConfig_t *config, const char *uri, void *ctx);
-    void obj_httpd_info_html(objConfig_t *config, const char *uri, void *ctx);
+    void objHttpdRegisterUriIndexCss(objConfig_t *config);
+    void objHttpdUnRegisterUriIndexCss(objConfig_t *config);
+    void objHttpdRegisterUriIndexHtml(objConfig_t *config);
+    void objHttpdUnRegisterUriIndexHtml(objConfig_t *config);
+    void objHttpdRegisterUriInfoHtml(objConfig_t *config);
+    void objHttpdUnRegisterUriInfoHtml(objConfig_t *config);
+    void objHttpdRegisterUriWifiHtml(objConfig_t *config);
+    void objHttpdUnRegisterUriWifiHtml(objConfig_t *config);
+    void objHttpdRegisterUriPromiseMinJs(objConfig_t *config);
+    void objHttpdUnRegisterUriPromiseMinJs(objConfig_t *config);
+
 #ifdef __cplusplus
 }
 #endif
