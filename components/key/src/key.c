@@ -41,15 +41,14 @@ static void gpio_task_example(void *arg)
                 press_key = pdFALSE;
                 lift_key = pdFALSE;
 
-                if (backup_time > 9000000)
+                if (backup_time > 30000000)
                 { /* 30m long long press */
                     config->pfnClickCallback(config, KEY_GPIO_LL_PRESS_EVT);
                 }
                 else
                 {
-                    if (backup_time > 6000000)
+                    if (backup_time > 5000000)
                     { /*30m long press */
-
                         config->pfnClickCallback(config, KEY_GPIO_L_PRESS_EVT);
                     }
                     else

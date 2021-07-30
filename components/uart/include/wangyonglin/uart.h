@@ -5,14 +5,9 @@
 extern "C"
 {
 #endif
-    struct objUart
-    {
-        int baud_rate;
-        uart_port_t uart_num;
-    };
-    typedef struct objUart objUart_t;
-    esp_err_t objUartSend(uint8_t *data, uint32_t length);
-    esp_err_t objUartInit(int baud_rate);
+
+    esp_err_t objUartSend(objConfig_t *config, uint8_t *data, uint32_t length);
+    esp_err_t objUartStart(objConfig_t *config);
 #ifdef __cplusplus
 }
 #endif

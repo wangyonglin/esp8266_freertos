@@ -55,10 +55,50 @@ extern "C"
         ROUTE_AP_STAIPASSIGNED,
         ROUTE_AP_PROBEREQRECVED,
     } objRouteId_t;
+    /*
+    typedef unsigned char objPackData_t;
+    typedef int objPackDataLenth_t;
+    typedef unsigned int objPackSize_t;
+    typedef unsigned char objPackAddr_t;
+    typedef unsigned char objPackKey_t;
+    typedef unsigned int objPackId_t;
+    typedef struct
+    {
+        objPackAddr_t a;
+        objPackAddr_t b;
+        objPackKey_t k;
+        objPackId_t i;
+    } objPack_t;*/
+    typedef unsigned char objRF433Header_t;
+    typedef unsigned char objRF433Footer_t;
+    typedef unsigned char objRF433Data_t;
+    typedef int objRF433DataLength_t;
+    typedef unsigned int objRF433Size_t;
+    typedef unsigned char objRF433Addr_t;
+    typedef unsigned char objRF433Key_t;
+    typedef unsigned int objRF433Id_t;
+    typedef unsigned char objRF433Oscillation_t;
+    typedef struct
+    {
+        objRF433Id_t i;
+        objRF433Header_t h;
+        objRF433Addr_t a;
+        objRF433Addr_t b;
+        objRF433Key_t k;
+        objRF433Oscillation_t o;
+        objRF433Footer_t f;
+    } objRF433Pack_t;
+
     typedef struct objConfig objConfig_t;
     typedef void (*objClickCallback_t)(objConfig_t *config, uint8_t event);
     typedef void (*objWifiCallback_t)(objConfig_t *config, objRouteId_t id);
     typedef void (*objMqttCallback_t)(objConfig_t *config, int level, uint8_t *data, int len);
+    typedef struct
+    {
+        esp_timer_handle_t handler;
+        int timeout_us;
+        BaseType_t bit;
+    } objTimer_t;
     struct objConfig
     {
         EventGroupHandle_t wifi_event_group;
@@ -78,6 +118,15 @@ extern "C"
         objClickCallback_t pfnClickCallback;
         objWifiCallback_t pfnWifiCallback;
         objMqttCallback_t pfnMqttCallback;
+        objRF433Pack_t rf433[8];
+        int rf433_size;
+        uart_port_t uart_num;
+        uart_config_t uart_config;
+       // BaseType_t uart_recv_bit;
+        //uint64_t timer_uart_timeout_us;
+        //esp_timer_handle_t timer_uart_handler;
+        objTimer_t timer_control_clieck;
+        objTimer_t timer_control_message;
     };
 
     esp_err_t objConfigInit(objConfig_t *config);
@@ -89,9 +138,9 @@ extern "C"
     esp_err_t objWifiScanInit(objConfig_t *config);
     esp_err_t objBootGet(objConfig_t *config);
     esp_err_t objBootSet(objConfig_t *config, BaseType_t base);
+    esp_err_t objUartInit(objConfig_t *config, uart_port_t uart_port, int uart_baud_rate);
     char *obj_chip_id(void);
-    void objSystemInit(void);
-
+    esp_err_t objTimerInit(objConfig_t *config);
 #ifdef __cplusplus
 }
 #endif

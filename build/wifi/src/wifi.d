@@ -122,8 +122,10 @@ src/wifi.o: /root/esp/github/esp8266_freertos/components/wifi/src/wifi.c \
  /root/esp/github/esp8266_freertos/components/ota/include/wangyonglin/ota.h \
  /root/esp/github/esp8266_freertos/components/flash/include/wangyonglin/flash.h \
  /root/esp/github/esp8266_freertos/components/string/include/wangyonglin/string.h \
+ /root/esp/github/esp8266_freertos/components/timer/include/wangyonglin/timer.h \
  /root/esp/github/esp8266_freertos/components/key/include/wangyonglin/key.h \
- /root/esp/github/esp8266_freertos/components/output/include/wangyonglin/output.h
+ /root/esp/github/esp8266_freertos/components/output/include/wangyonglin/output.h \
+ /root/esp/github/esp8266_freertos/components/rf433/include/wangyonglin/rf433.h
 
 /root/esp/github/esp8266_freertos/components/esp/include/wangyonglin/wangyonglin.h:
 
@@ -371,7 +373,11 @@ src/wifi.o: /root/esp/github/esp8266_freertos/components/wifi/src/wifi.c \
 
 /root/esp/github/esp8266_freertos/components/string/include/wangyonglin/string.h:
 
+/root/esp/github/esp8266_freertos/components/timer/include/wangyonglin/timer.h:
+
 /root/esp/github/esp8266_freertos/components/key/include/wangyonglin/key.h:
 
 /root/esp/github/esp8266_freertos/components/output/include/wangyonglin/output.h:
+
+/root/esp/github/esp8266_freertos/components/rf433/include/wangyonglin/rf433.h:
 /root/esp/github/esp8266_freertos/components/wifi/src/wifi.c:

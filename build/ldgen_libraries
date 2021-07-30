@@ -47,6 +47,7 @@
  /root/esp/github/esp8266_freertos/build/string/libstring.a
  /root/esp/github/esp8266_freertos/build/tcp_transport/libtcp_transport.a
  /root/esp/github/esp8266_freertos/build/tcpip_adapter/libtcpip_adapter.a
+ /root/esp/github/esp8266_freertos/build/timer/libtimer.a
  /root/esp/github/esp8266_freertos/build/uart/libuart.a
  /root/esp/github/esp8266_freertos/build/vfs/libvfs.a
  /root/esp/github/esp8266_freertos/build/wear_levelling/libwear_levelling.a

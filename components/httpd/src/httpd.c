@@ -7,6 +7,7 @@ void start_webserver(objConfig_t *config)
 {
 
     httpd_config_t cfg = HTTPD_DEFAULT_CONFIG();
+    cfg.max_resp_headers=1024;
     cfg.send_wait_timeout = 8;
     cfg.recv_wait_timeout = 8;
     ESP_LOGI(TAG, "Starting server on port: '%d'", cfg.server_port);

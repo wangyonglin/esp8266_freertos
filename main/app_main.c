@@ -41,14 +41,15 @@ void key_click_handler(objConfig_t *config, uint8_t event)
     switch (event)
     {
     case KEY_GPIO_S_PRESS_EVT:
-        ESP_LOGI(TAG, "短按事件");
+        ESP_LOGI(TAG, "s clieck");
         obj_output_switch(IO00);
         break;
     case KEY_GPIO_L_PRESS_EVT:
-        ESP_LOGI(TAG, "长按事件");
+        ESP_LOGI(TAG, "l clieck");
+        objTimerStart(config);
         break;
     case KEY_GPIO_LL_PRESS_EVT:
-        ESP_LOGI(TAG, "超长按事件");
+        ESP_LOGI(TAG, "ll clieck");
         objBootSet(config, pdFALSE);
         vTaskDelay(3000 / portTICK_PERIOD_MS);
         esp_restart();
@@ -63,7 +64,10 @@ void objWifiCallback(objConfig_t *config, objRouteId_t id)
     switch (id)
     {
     case ROUTE_STA_GOT_IP:
-        esp_mqtt_client_start(config->client);
+        if(esp_mqtt_client_start(config->client)!=ESP_OK){
+            vTaskDelay(3000 / portTICK_PERIOD_MS);
+            esp_restart();
+        }
         break;
     case ROUTE_STA_DISCONNECTED:
         esp_mqtt_client_stop(config->client);
@@ -80,11 +84,11 @@ void objWifiCallback(objConfig_t *config, objRouteId_t id)
 }
 void app_main()
 {
-    objSystemInit();
     objConfigInit(&config);
+    objTimerCreate(&config);
+    objUartInit(&config,UART_NUM_0,9600);
     obj_output_init(IO00);
     objQueueInit(&config,objMqttCallback);
-
     objClickInit(&config, IO02, key_click_handler);
 
     objWifiStart(&config, objWifiCallback);
