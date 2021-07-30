@@ -122,9 +122,6 @@ extern "C"
         int rf433_size;
         uart_port_t uart_num;
         uart_config_t uart_config;
-       // BaseType_t uart_recv_bit;
-        //uint64_t timer_uart_timeout_us;
-        //esp_timer_handle_t timer_uart_handler;
         objTimer_t timer_control_clieck;
         objTimer_t timer_control_message;
     };

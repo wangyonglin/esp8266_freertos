@@ -6,8 +6,8 @@ extern "C"
 {
 #endif
 
-BaseType_t objRf433Parse(objRF433Pack_t *obj, uint8_t *dat, uint32_t dat_len);
-BaseType_t objRF433Add(objConfig_t *config, objRF433Pack_t obj);
+BaseType_t objRf433PackParse(objRF433Pack_t *obj, uint8_t *dat, uint32_t dat_len);
+BaseType_t objRF433PackAdd(objConfig_t *config, objRF433Pack_t obj);
 BaseType_t objRF433PackCheck(objConfig_t *config,objRF433Pack_t obj);
 #ifdef __cplusplus
 }
