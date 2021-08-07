@@ -1,5 +1,5 @@
-#include <wangyonglin/esp.h>
-#include <wangyonglin/wangyonglin.h>
+#include <espify.h>
+#include <configify.h>
 
 extern const uint8_t web_file_index_css_start[] asm("_binary_index_css_start");
 extern const uint8_t web_file_index_css_end[] asm("_binary_index_css_end");
@@ -14,7 +14,7 @@ esp_err_t index_css(httpd_req_t *req)
     return ESP_OK;
 }
 
-void objHttpdRegisterUriIndexCss(objConfig_t *config)
+void objHttpdRegisterUriIndexCss(Configify_t *config)
 {
     httpd_uri_t uri_t = {
         .uri = TAG,
@@ -27,7 +27,7 @@ void objHttpdRegisterUriIndexCss(objConfig_t *config)
         ESP_LOGI(TAG, "successfully registering the uri%s", TAG);
     }
 }
-void objHttpdUnRegisterUriIndexCss(objConfig_t *config)
+void objHttpdUnRegisterUriIndexCss(Configify_t *config)
 {
     if(httpd_unregister_uri_handler(config->httpd,TAG, HTTP_GET)==ESP_OK){
          ESP_LOGI(TAG, "successfully deregistering the uri%s", TAG);

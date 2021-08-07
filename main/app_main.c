@@ -1,32 +1,32 @@
-/**
- * @file app_main.c
- * @author 王永林 (admin@wangyonglin.com)
- * @brief 
- * @version 1.0.0
- * @date 2021年07月10日
- * 
- * @copyright Copyright (c) 1988-2021 wangyonglin.com. All rights reserved.
- * 
- */
-#include <wangyonglin/wangyonglin.h>
-#include <wangyonglin/esp.h>
+#include <configify.h>
+#include <espify.h>
+#include <timerify.h>
+#include <key.h>
+#include <httpd.h>
+#include <messageify.h>
+#include <outify.h>
+#include <queueify.h>
+#include <flashify.h>
+#include <wifiify.h>
+#include <mqttify.h>
+
 static const char *TAG = "main";
-objConfig_t config;
-void objMqttCallback(objConfig_t *config,int level, uint8_t *data, int len)
+Configify_t config;
+void objMqttCallback(Configify_t *config,int level, Stringify_t *data, int len)
 {
     switch (level)
     {
-    case obj_trun_level:
+    case EVENT_TRUN_LEVEL:
         if (strcmp((char *)data, "on") == 0)
         {
-            obj_output_setting(IO00, 0);
+            OutifySetting(IO00, 0);
         }
         else if (strcmp((char *)data, "off") == 0)
         {
-            obj_output_setting(IO00, 1);
+            OutifySetting(IO00, 1);
         }
         break;
-    case obj_rf433_level:
+    case EVENT_RF433_LEVEL:
         if (data)
         {
             ESP_LOGI(TAG, (char *)data);
@@ -36,21 +36,21 @@ void objMqttCallback(objConfig_t *config,int level, uint8_t *data, int len)
         break;
     }
 }
-void key_click_handler(objConfig_t *config, uint8_t event)
+void key_click_handler(Configify_t *config, uint8_t event)
 {
     switch (event)
     {
     case KEY_GPIO_S_PRESS_EVT:
-        ESP_LOGI(TAG, "s clieck");
-        obj_output_switch(IO00);
+        ESP_LOGI(TAG, "trigger clieck");
+        OutifyTrigger(IO00);
         break;
     case KEY_GPIO_L_PRESS_EVT:
-        ESP_LOGI(TAG, "l clieck");
+        ESP_LOGI(TAG, "long clieck");
         objTimerStart(config);
         break;
     case KEY_GPIO_LL_PRESS_EVT:
-        ESP_LOGI(TAG, "ll clieck");
-        objBootSet(config, pdFALSE);
+        ESP_LOGI(TAG, "overlong clieck");
+        FlashifyBootSet(pdFALSE);
         vTaskDelay(3000 / portTICK_PERIOD_MS);
         esp_restart();
         break;
@@ -59,7 +59,7 @@ void key_click_handler(objConfig_t *config, uint8_t event)
     }
 }
 
-void objWifiCallback(objConfig_t *config, objRouteId_t id)
+void objWifiCallback(Configify_t *config, objRouteId_t id)
 {
     switch (id)
     {
@@ -84,16 +84,16 @@ void objWifiCallback(objConfig_t *config, objRouteId_t id)
 }
 void app_main()
 {
-    objConfigInit(&config);
+    ConfigifyInit(&config);
     objTimerCreate(&config);
-    objUartInit(&config,UART_NUM_0,9600);
-    obj_output_init(IO00);
+    OutifyInit(IO00);
+
     objQueueInit(&config,objMqttCallback);
     objClickInit(&config, IO02, key_click_handler);
 
     objWifiStart(&config, objWifiCallback);
     if (config.bits == pdTRUE)
     {
-        objMqttInit(&config);
+        MqttifyInit(&config);
     }
 }

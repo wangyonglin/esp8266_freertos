@@ -1,7 +1,7 @@
 
-#include <wangyonglin/esp.h>
-#include <wangyonglin/wangyonglin.h>
-
+#include <espify.h>
+#include <configify.h>
+#include <key.h>
 static xQueueHandle gpio_evt_queue = NULL;
 static void gpio_isr_handler(void *arg)
 {
@@ -12,7 +12,7 @@ static void gpio_isr_handler(void *arg)
 static void gpio_task_example(void *arg)
 {
     uint32_t io;
-    objConfig_t *config = (objConfig_t *)arg;
+    Configify_t *config = (Configify_t *)arg;
     BaseType_t press_key = pdFALSE;
     BaseType_t lift_key = pdFALSE;
     int64_t backup_time = 0;
@@ -41,13 +41,13 @@ static void gpio_task_example(void *arg)
                 press_key = pdFALSE;
                 lift_key = pdFALSE;
 
-                if (backup_time > 30000000)
+                if (backup_time > 12000000)
                 { /* 30m long long press */
                     config->pfnClickCallback(config, KEY_GPIO_LL_PRESS_EVT);
                 }
                 else
                 {
-                    if (backup_time > 5000000)
+                    if (backup_time > 3000000)
                     { /*30m long press */
                         config->pfnClickCallback(config, KEY_GPIO_L_PRESS_EVT);
                     }
@@ -61,7 +61,7 @@ static void gpio_task_example(void *arg)
     }
 }
 
-esp_err_t objClickInit(objConfig_t *config, uint32_t io, objClickCallback_t cb)
+esp_err_t objClickInit(Configify_t *config, uint32_t io, ClickCallback_t cb)
 {
     config->pfnClickCallback = cb;
     gpio_config_t io_conf;

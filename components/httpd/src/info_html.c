@@ -1,20 +1,11 @@
-#include <sys/param.h>
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "esp_system.h"
-#include "esp_log.h"
-#include "esp_netif.h"
-#include "esp_event.h"
-#include "nvs.h"
-#include "nvs_flash.h"
-#include <esp_http_server.h>
-#include <wangyonglin/httpd.h>
-#include <wangyonglin/flash.h>
-#include <cJSON.h>
+#include <espify.h>
+#include <configify.h>
+#include <wifiify.h>
+#include <flashify.h>
 static const char *TAG = "/info.html";
 esp_err_t info_html(httpd_req_t *req)
 {
-    objConfig_t *config = (objConfig_t *)req->user_ctx;
+    Configify_t *config = (Configify_t *)req->user_ctx;
     char content[100] = {0};
     size_t recv_size = MIN(req->content_len, sizeof(content));
     int ret = httpd_req_recv(req, content, recv_size);
@@ -36,7 +27,7 @@ esp_err_t info_html(httpd_req_t *req)
 
     cJSON *root = cJSON_CreateObject();
     ESP_ERROR_CHECK(objWifiSTASet(config));
-    objBootSet(config, pdTRUE);
+    FlashifyBootSet(pdTRUE);
     cJSON_AddNumberToObject(root, "code", 200);
     cJSON_AddStringToObject(root, "message", "配置成功,自动重启");
     char *out = cJSON_Print(root);
@@ -49,7 +40,7 @@ esp_err_t info_html(httpd_req_t *req)
     return ESP_OK;
 }
 
-void objHttpdRegisterUriInfoHtml(objConfig_t *config)
+void objHttpdRegisterUriInfoHtml(Configify_t *config)
 {
     httpd_uri_t uri_t = {
         .uri = TAG,
@@ -63,7 +54,7 @@ void objHttpdRegisterUriInfoHtml(objConfig_t *config)
     }
 }
 
-void objHttpdUnRegisterUriInfoHtml(objConfig_t *config)
+void objHttpdUnRegisterUriInfoHtml(Configify_t *config)
 {
     if (httpd_unregister_uri_handler(config->httpd, TAG, HTTP_POST) == ESP_OK)
     {

@@ -1,5 +1,11 @@
-#include <wangyonglin/esp.h>
-#include <wangyonglin/wangyonglin.h>
+#include <espify.h>
+#include <configify.h>
+#include <uartify.h>
+#include <timerify.h>
+#include <queueify.h>
+#include <flashify.h>
+#include <rf433ify.h>
+#include <outify.h>
 static const char *TAG = "uart_events";
 
 #define BUF_SIZE (1024)
@@ -11,7 +17,7 @@ static void uart_event_task(void *pvParameters)
 {
     uart_event_t event;
     uint8_t *dtmp = (uint8_t *)malloc(RD_BUF_SIZE);
-    objConfig_t *config = (objConfig_t *)pvParameters;
+    Configify_t *config = (Configify_t *)pvParameters;
     objRF433Pack_t obj;
     for (;;)
     {
@@ -23,7 +29,7 @@ static void uart_event_task(void *pvParameters)
             case UART_DATA:
                 if (config->timer_control_clieck.bit == pdTRUE)
                 {
-                    if (uart_read_bytes(config->uart_num, dtmp, event.size, portMAX_DELAY) > 0)
+                    if (uart_read_bytes(config->uart.port, dtmp, event.size, portMAX_DELAY) > 0)
                     {
                         if (config->timer_control_message.bit == pdFALSE)
                         {
@@ -40,7 +46,7 @@ static void uart_event_task(void *pvParameters)
                 }
                 else
                 {
-                    if (uart_read_bytes(config->uart_num, dtmp, event.size, portMAX_DELAY) > 0)
+                    if (uart_read_bytes(config->uart.port, dtmp, event.size, portMAX_DELAY) > 0)
                     {
 
                         if (config->timer_control_message.bit == pdFALSE)
@@ -49,7 +55,7 @@ static void uart_event_task(void *pvParameters)
                             {
                                 if (objRF433PackCheck(config, obj) == pdTRUE)
                                 {
-                                    obj_output_switch(IO00);
+                                    OutifyTrigger(IO00);
                                     config->timer_control_message.bit = pdTRUE;
                                     ESP_ERROR_CHECK(esp_timer_start_once(config->timer_control_message.handler, config->timer_control_message.timeout_us));
                                 }
@@ -60,12 +66,12 @@ static void uart_event_task(void *pvParameters)
                 break;
             case UART_FIFO_OVF:
                 ESP_LOGI(TAG, "hw fifo overflow");
-                uart_flush_input(config->uart_num);
+                uart_flush_input(config->uart.port);
                 xQueueReset(uart0_queue);
                 break;
             case UART_BUFFER_FULL:
                 ESP_LOGI(TAG, "ring buffer full");
-                uart_flush_input(config->uart_num);
+                uart_flush_input(config->uart.port);
                 xQueueReset(uart0_queue);
                 break;
 
@@ -88,12 +94,12 @@ static void uart_event_task(void *pvParameters)
 }
 void UartOnceTimerCallback(void *arg)
 {
-    objConfig_t *config = (objConfig_t *)arg;
+    Configify_t *config = (Configify_t *)arg;
     config->timer_control_message.bit = pdFALSE;
     ESP_ERROR_CHECK(esp_timer_stop(config->timer_control_message.handler));
 }
 
-esp_err_t objUartStart(objConfig_t *config)
+esp_err_t objUartStart(Configify_t *config)
 {
     esp_timer_create_args_t test_once_arg =
         {
@@ -101,8 +107,8 @@ esp_err_t objUartStart(objConfig_t *config)
             .arg = config,
             .name = "UartOnceTimer"};
     ESP_ERROR_CHECK(esp_timer_create(&test_once_arg, &config->timer_control_message.handler));
-    ESP_ERROR_CHECK(uart_param_config(config->uart_num, &config->uart_config));
-    ESP_ERROR_CHECK(uart_driver_install(config->uart_num, BUF_SIZE * 1, BUF_SIZE * 1, 100, &uart0_queue, 0));
+    ESP_ERROR_CHECK(uart_param_config(config->uart.port, &config->uart.config));
+    ESP_ERROR_CHECK(uart_driver_install(config->uart.port, BUF_SIZE * 1, BUF_SIZE * 1, 100, &uart0_queue, 0));
     xTaskCreate(uart_event_task, "uart_event_task", 2048, config, 10, NULL);
     return ESP_OK;
 }

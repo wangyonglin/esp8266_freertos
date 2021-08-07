@@ -1,9 +1,11 @@
-#include <wangyonglin/esp.h>
-#include <wangyonglin/wangyonglin.h>
-
+#include <espify.h>
+#include <configify.h>
+#include <messageify.h>
+#include <stringify.h>
+#include <queueify.h>
 void objQueueWaitHandler(void *pvParameter)
 {
-    objConfig_t *config = (objConfig_t *)pvParameter;
+    Configify_t *config = (Configify_t *)pvParameter;
     objMessage_t message;
     for (;;)
     {
@@ -18,12 +20,11 @@ void objQueueWaitHandler(void *pvParameter)
                 if (message.trun == On)
                 {
 
-                    config->pfnMqttCallback(config,obj_trun_level, (uint8_t *)"on", 2);
-                    obj_output_setting(IO00, 0);
+                    config->pfnMqttCallback(config, EVENT_TRUN_LEVEL, (uint8_t *)"on", 2);
                 }
                 else if (message.trun == Off)
                 {
-                    config->pfnMqttCallback(config,obj_trun_level, (uint8_t *)"off", 3);
+                    config->pfnMqttCallback(config, EVENT_TRUN_LEVEL, (uint8_t *)"off", 3);
                 }
             }
             else if (message.level == 0x0001)
@@ -32,7 +33,7 @@ void objQueueWaitHandler(void *pvParameter)
                 objMessageRF433(&message);
                 if (message.rf433)
                 {
-                    config->pfnMqttCallback(config,obj_rf433_level, message.rf433, strlen((char *)message.rf433));
+                    config->pfnMqttCallback(config, EVENT_RF433_LEVEL, message.rf433, strlen((char *)message.rf433));
                 }
             }
         }
@@ -40,7 +41,7 @@ void objQueueWaitHandler(void *pvParameter)
     }
     vTaskDelete(NULL);
 }
-esp_err_t objQueueInit(objConfig_t *config, objMqttCallback_t cb)
+esp_err_t objQueueInit(Configify_t *config, MqttCallback_t cb)
 {
     config->pfnMqttCallback = cb;
     config->xQueueMqtt = xQueueCreate(3, sizeof(objMessage_t));

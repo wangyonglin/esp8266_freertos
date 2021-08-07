@@ -1,5 +1,5 @@
-#include <wangyonglin/esp.h>
-#include <wangyonglin/wangyonglin.h>
+#include <espify.h>
+#include <configify.h>
 
 extern const uint8_t web_file_promise_min_js_start[] asm("_binary_promise_min_js_start");
 extern const uint8_t web_file_promise_min_js_end[] asm("_binary_promise_min_js_end");
@@ -14,7 +14,7 @@ esp_err_t promise_min_js(httpd_req_t *req)
     return ESP_OK;
 }
 
-void objHttpdRegisterUriPromiseMinJs(objConfig_t *config)
+void objHttpdRegisterUriPromiseMinJs(Configify_t *config)
 {
     httpd_uri_t uri_t = {
         .uri = TAG,
@@ -27,7 +27,7 @@ void objHttpdRegisterUriPromiseMinJs(objConfig_t *config)
         ESP_LOGI(TAG, "successfully registering the uri%s", TAG);
     }
 }
-void objHttpdUnRegisterUriPromiseMinJs(objConfig_t *config)
+void objHttpdUnRegisterUriPromiseMinJs(Configify_t *config)
 {
     if(httpd_unregister_uri_handler(config->httpd,TAG, HTTP_GET)==ESP_OK){
          ESP_LOGI(TAG, "successfully deregistering the uri%s", TAG);

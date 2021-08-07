@@ -1,7 +1,7 @@
 app_main.o: /root/esp/github/esp8266_freertos/main/app_main.c \
- /root/esp/github/esp8266_freertos/components/esp/include/wangyonglin/wangyonglin.h \
- /root/esp/github/esp8266_freertos/components/message/include/wangyonglin/message.h \
- /root/esp/github/esp8266_freertos/components/esp/include/wangyonglin/esp.h \
+ /root/esp/github/esp8266_freertos/components/esp/include/configify.h \
+ /root/esp/github/esp8266_freertos/components/esp/include/espify.h \
+ /root/esp/github/esp8266_freertos/components/esp/include/libify.h \
  /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/FreeRTOS.h \
  /root/esp/ESP8266_RTOS_SDK/components/freertos/port/esp8266/include/freertos/FreeRTOSConfig.h \
  /root/esp/github/esp8266_freertos/build/include/sdkconfig.h \
@@ -94,8 +94,6 @@ app_main.o: /root/esp/github/esp8266_freertos/main/app_main.c \
  /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/errno.h \
  /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/dns.h \
  /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/netdb.h \
- /root/esp/ESP8266_RTOS_SDK/components/mqtt/esp-mqtt/include/mqtt_client.h \
- /root/esp/ESP8266_RTOS_SDK/components/mqtt/esp-mqtt/include/mqtt_config.h \
  /root/esp/ESP8266_RTOS_SDK/components/app_update/include/esp_ota_ops.h \
  /root/esp/ESP8266_RTOS_SDK/components/spi_flash/include/esp_partition.h \
  /root/esp/ESP8266_RTOS_SDK/components/spi_flash/include/esp_spi_flash.h \
@@ -112,26 +110,27 @@ app_main.o: /root/esp/github/esp8266_freertos/main/app_main.c \
  /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp8266/eagle_soc.h \
  /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp8266/gpio_register.h \
  /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_timer.h \
+ /root/esp/ESP8266_RTOS_SDK/components/freertos/port/esp8266/include/freertos/portmacro.h \
  /root/esp/ESP8266_RTOS_SDK/components/json/cJSON/cJSON.h \
- /root/esp/github/esp8266_freertos/components/esp/include/wangyonglin/io.h \
- /root/esp/github/esp8266_freertos/components/uart/include/wangyonglin/uart.h \
- /root/esp/github/esp8266_freertos/components/httpd/include/wangyonglin/httpd.h \
- /root/esp/github/esp8266_freertos/components/wifi/include/wangyonglin/wifi.h \
- /root/esp/github/esp8266_freertos/main/include/wangyonglin/mqtt.h \
- /root/esp/github/esp8266_freertos/components/queue/include/wangyonglin/queue.h \
- /root/esp/github/esp8266_freertos/components/ota/include/wangyonglin/ota.h \
- /root/esp/github/esp8266_freertos/components/flash/include/wangyonglin/flash.h \
- /root/esp/github/esp8266_freertos/components/string/include/wangyonglin/string.h \
- /root/esp/github/esp8266_freertos/components/timer/include/wangyonglin/timer.h \
- /root/esp/github/esp8266_freertos/components/key/include/wangyonglin/key.h \
- /root/esp/github/esp8266_freertos/components/output/include/wangyonglin/output.h \
- /root/esp/github/esp8266_freertos/components/rf433/include/wangyonglin/rf433.h
+ /root/esp/github/esp8266_freertos/components/rfify/include/rf433ify.h \
+ /root/esp/github/esp8266_freertos/components/uart/include/uartify.h \
+ /root/esp/github/esp8266_freertos/components/timerify/include/timerify.h \
+ /root/esp/ESP8266_RTOS_SDK/components/mqtt/esp-mqtt/include/mqtt_client.h \
+ /root/esp/ESP8266_RTOS_SDK/components/mqtt/esp-mqtt/include/mqtt_config.h \
+ /root/esp/github/esp8266_freertos/components/key/include/key.h \
+ /root/esp/github/esp8266_freertos/components/httpd/include/httpd.h \
+ /root/esp/github/esp8266_freertos/components/message/include/messageify.h \
+ /root/esp/github/esp8266_freertos/components/outify/include/outify.h \
+ /root/esp/github/esp8266_freertos/components/queue/include/queueify.h \
+ /root/esp/github/esp8266_freertos/components/flashify/include/flashify.h \
+ /root/esp/github/esp8266_freertos/components/wifi/include/wifiify.h \
+ /root/esp/github/esp8266_freertos/components/mqttify/include/mqttify.h
 
-/root/esp/github/esp8266_freertos/components/esp/include/wangyonglin/wangyonglin.h:
+/root/esp/github/esp8266_freertos/components/esp/include/configify.h:
 
-/root/esp/github/esp8266_freertos/components/message/include/wangyonglin/message.h:
+/root/esp/github/esp8266_freertos/components/esp/include/espify.h:
 
-/root/esp/github/esp8266_freertos/components/esp/include/wangyonglin/esp.h:
+/root/esp/github/esp8266_freertos/components/esp/include/libify.h:
 
 /root/esp/ESP8266_RTOS_SDK/components/freertos/include/freertos/FreeRTOS.h:
 
@@ -317,10 +316,6 @@ app_main.o: /root/esp/github/esp8266_freertos/main/app_main.c \
 
 /root/esp/ESP8266_RTOS_SDK/components/lwip/lwip/src/include/lwip/netdb.h:
 
-/root/esp/ESP8266_RTOS_SDK/components/mqtt/esp-mqtt/include/mqtt_client.h:
-
-/root/esp/ESP8266_RTOS_SDK/components/mqtt/esp-mqtt/include/mqtt_config.h:
-
 /root/esp/ESP8266_RTOS_SDK/components/app_update/include/esp_ota_ops.h:
 
 /root/esp/ESP8266_RTOS_SDK/components/spi_flash/include/esp_partition.h:
@@ -353,31 +348,33 @@ app_main.o: /root/esp/github/esp8266_freertos/main/app_main.c \
 
 /root/esp/ESP8266_RTOS_SDK/components/esp8266/include/esp_timer.h:
 
+/root/esp/ESP8266_RTOS_SDK/components/freertos/port/esp8266/include/freertos/portmacro.h:
+
 /root/esp/ESP8266_RTOS_SDK/components/json/cJSON/cJSON.h:
 
-/root/esp/github/esp8266_freertos/components/esp/include/wangyonglin/io.h:
+/root/esp/github/esp8266_freertos/components/rfify/include/rf433ify.h:
 
-/root/esp/github/esp8266_freertos/components/uart/include/wangyonglin/uart.h:
+/root/esp/github/esp8266_freertos/components/uart/include/uartify.h:
 
-/root/esp/github/esp8266_freertos/components/httpd/include/wangyonglin/httpd.h:
+/root/esp/github/esp8266_freertos/components/timerify/include/timerify.h:
 
-/root/esp/github/esp8266_freertos/components/wifi/include/wangyonglin/wifi.h:
+/root/esp/ESP8266_RTOS_SDK/components/mqtt/esp-mqtt/include/mqtt_client.h:
 
-/root/esp/github/esp8266_freertos/main/include/wangyonglin/mqtt.h:
+/root/esp/ESP8266_RTOS_SDK/components/mqtt/esp-mqtt/include/mqtt_config.h:
 
-/root/esp/github/esp8266_freertos/components/queue/include/wangyonglin/queue.h:
+/root/esp/github/esp8266_freertos/components/key/include/key.h:
 
-/root/esp/github/esp8266_freertos/components/ota/include/wangyonglin/ota.h:
+/root/esp/github/esp8266_freertos/components/httpd/include/httpd.h:
 
-/root/esp/github/esp8266_freertos/components/flash/include/wangyonglin/flash.h:
+/root/esp/github/esp8266_freertos/components/message/include/messageify.h:
 
-/root/esp/github/esp8266_freertos/components/string/include/wangyonglin/string.h:
+/root/esp/github/esp8266_freertos/components/outify/include/outify.h:
 
-/root/esp/github/esp8266_freertos/components/timer/include/wangyonglin/timer.h:
+/root/esp/github/esp8266_freertos/components/queue/include/queueify.h:
 
-/root/esp/github/esp8266_freertos/components/key/include/wangyonglin/key.h:
+/root/esp/github/esp8266_freertos/components/flashify/include/flashify.h:
 
-/root/esp/github/esp8266_freertos/components/output/include/wangyonglin/output.h:
+/root/esp/github/esp8266_freertos/components/wifi/include/wifiify.h:
 
-/root/esp/github/esp8266_freertos/components/rf433/include/wangyonglin/rf433.h:
+/root/esp/github/esp8266_freertos/components/mqttify/include/mqttify.h:
 /root/esp/github/esp8266_freertos/main/./app_main.c:

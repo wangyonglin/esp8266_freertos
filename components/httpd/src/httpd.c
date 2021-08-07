@@ -1,9 +1,9 @@
-#include <wangyonglin/esp.h>
-#include <wangyonglin/wangyonglin.h>
-
+#include <espify.h>
+#include <configify.h>
+#include <httpd.h>
 const char *TAG = "httpd";
 
-void start_webserver(objConfig_t *config)
+void start_webserver(Configify_t *config)
 {
 
     httpd_config_t cfg = HTTPD_DEFAULT_CONFIG();
@@ -23,7 +23,7 @@ void start_webserver(objConfig_t *config)
     ESP_LOGI(TAG, "Error starting server!");
     return;
 }
-void stop_webserver(objConfig_t *config)
+void stop_webserver(Configify_t *config)
 {
     // Stop the httpd server
     objHttpdUnRegisterUriPromiseMinJs(config);
@@ -37,7 +37,7 @@ void stop_webserver(objConfig_t *config)
 static void disconnect_handler(void *arg, esp_event_base_t event_base,
                                int32_t event_id, void *event_data)
 {
-    objConfig_t *config = (objConfig_t *)arg;
+    Configify_t *config = (Configify_t *)arg;
     if (config->httpd)
     {
         ESP_LOGI(TAG, "Stopping webserver");
@@ -49,7 +49,7 @@ static void disconnect_handler(void *arg, esp_event_base_t event_base,
 static void connect_handler(void *arg, esp_event_base_t event_base,
                             int32_t event_id, void *event_data)
 {
-    objConfig_t *config = (objConfig_t *)arg;
+    Configify_t *config = (Configify_t *)arg;
     if (config->httpd == NULL)
     {
         ESP_LOGI(TAG, "Starting webserver");
@@ -57,7 +57,7 @@ static void connect_handler(void *arg, esp_event_base_t event_base,
     }
 }
 
-esp_err_t objHttpdStart(objConfig_t *config)
+esp_err_t objHttpdStart(Configify_t *config)
 {
     ESP_LOGI(TAG, "httpd start");
     ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_STA_GOT_IP, &connect_handler, config));
@@ -66,7 +66,7 @@ esp_err_t objHttpdStart(objConfig_t *config)
     start_webserver(config);
     return ESP_OK;
 }
-esp_err_t objHttpdStop(objConfig_t *config)
+esp_err_t objHttpdStop(Configify_t *config)
 {
 
     ESP_LOGI(TAG, "https stop");

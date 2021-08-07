@@ -1,5 +1,5 @@
-#include <wangyonglin/wangyonglin.h>
-#include <wangyonglin/esp.h>
+#include <espify.h>
+#include <configify.h>
 static const char *TAG = "wifi";
 
 static void wifi_event_handler(void *arg, esp_event_base_t event_base,
@@ -20,7 +20,7 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base,
 }
 static esp_err_t event_handler(void *ctx, system_event_t *event)
 {
-    objConfig_t *config = (objConfig_t *)ctx;
+    Configify_t *config = (Configify_t *)ctx;
     switch (event->event_id)
     {
     case SYSTEM_EVENT_STA_START:
@@ -89,7 +89,7 @@ static esp_err_t event_handler(void *ctx, system_event_t *event)
     return ESP_OK;
 }
 
-esp_err_t objWifiStart(objConfig_t *config, objWifiCallback_t cb)
+esp_err_t objWifiStart(Configify_t *config, WifiCallback_t cb)
 {
     config->pfnWifiCallback = cb;
     ESP_ERROR_CHECK(nvs_flash_init());

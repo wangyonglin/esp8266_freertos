@@ -1,22 +1,11 @@
-#include <sys/param.h>
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "esp_system.h"
-#include "esp_log.h"
-#include "esp_netif.h"
-#include "esp_event.h"
-#include "nvs.h"
-#include "nvs_flash.h"
-#include <esp_http_server.h>
-#include <wangyonglin/httpd.h>
-#include <wangyonglin/flash.h>
-#include <cJSON.h>
+#include <espify.h>
+#include <configify.h>
 static const char *TAG = "/wifi.html";
 cJSON *root = NULL;
 esp_err_t wifi_html(httpd_req_t *req)
 {
     httpd_resp_set_type(req, "application/json; charset=utf-8");
-    objConfig_t *config = (objConfig_t *)req->user_ctx;
+    Configify_t *config = (Configify_t *)req->user_ctx;
     esp_wifi_scan_start(&config->wifi_scan_config, 0);
     vTaskDelay(1000 / portTICK_PERIOD_MS);
     esp_err_t err;
@@ -69,7 +58,7 @@ esp_err_t wifi_html(httpd_req_t *req)
     return err;
 }
 
-void objHttpdRegisterUriWifiHtml(objConfig_t *config)
+void objHttpdRegisterUriWifiHtml(Configify_t *config)
 {
     httpd_uri_t uri_t = {
         .uri = TAG,
@@ -83,7 +72,7 @@ void objHttpdRegisterUriWifiHtml(objConfig_t *config)
     }
 }
 
-void objHttpdUnRegisterUriWifiHtml(objConfig_t *config)
+void objHttpdUnRegisterUriWifiHtml(Configify_t *config)
 {
     if (httpd_unregister_uri_handler(config->httpd, TAG, HTTP_GET) == ESP_OK)
     {

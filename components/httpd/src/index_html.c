@@ -1,14 +1,5 @@
-#include <sys/param.h>
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "esp_system.h"
-#include "esp_log.h"
-#include "esp_netif.h"
-#include "esp_event.h"
-#include "nvs.h"
-#include "nvs_flash.h"
-#include <esp_http_server.h>
-#include <wangyonglin/httpd.h>
+#include <espify.h>
+#include <configify.h>
 extern const uint8_t web_file_index_html_start[] asm("_binary_index_html_start");
 extern const uint8_t web_file_index_html_end[] asm("_binary_index_html_end");
 static const char *TAG = "/index.html";
@@ -21,7 +12,7 @@ esp_err_t index_html(httpd_req_t *req)
     return ESP_OK;
 }
 
-void objHttpdRegisterUriIndexHtml(objConfig_t *config)
+void objHttpdRegisterUriIndexHtml(Configify_t *config)
 {
     httpd_uri_t uri_t = {
         .uri = "/",
@@ -34,7 +25,7 @@ void objHttpdRegisterUriIndexHtml(objConfig_t *config)
         ESP_LOGI(TAG, "successfully registering the uri%s", TAG);
     }
 }
-void objHttpdUnRegisterUriIndexHtml(objConfig_t *config)
+void objHttpdUnRegisterUriIndexHtml(Configify_t *config)
 {
     if(httpd_unregister_uri_handler(config->httpd, "/", HTTP_GET)==ESP_OK){
          ESP_LOGI(TAG, "successfully deregistering the uri%s", "/");

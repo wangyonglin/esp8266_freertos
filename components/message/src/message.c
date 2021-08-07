@@ -1,5 +1,7 @@
-#include <wangyonglin/esp.h>
-#include <wangyonglin/wangyonglin.h>
+#include <espify.h>
+#include <configify.h>
+#include <messageify.h>
+#include <stringify.h>
 static const char *TAG = "MESSAGE";
 esp_err_t objMessageTrun(objMessage_t *message)
 {
