@@ -88,17 +88,15 @@ static void mqtt_event_task(void *pvParameters)
         root = cJSON_CreateObject();
         cJSON_AddTrueToObject(root, "success");
         cJSON_AddStringToObject(root, "message", "ok");
-        cJSON_AddNumberToObject(root, "code", 200);
-        cJSON_AddItemToObject(root, "restult", restult = cJSON_CreateArray());
-        cJSON_AddItemToArray(restult, (items = cJSON_CreateObject()));
-        cJSON_AddStringToObject(items,"id",(char*)config->only_id);
-        if (gpio_get_level(IO02) == 0)
+        cJSON_AddItemToObject(root, "result", restult = cJSON_CreateObject());
+        cJSON_AddStringToObject(restult,"id",(char*)config->only_id);
+        if (gpio_get_level(IO00) == 0)
         {
-            cJSON_AddStringToObject(items, "trun", "off");
+            cJSON_AddStringToObject(restult, "trun", "off");
         }
         else
         {
-            cJSON_AddStringToObject(items, "trun", "on");
+            cJSON_AddStringToObject(restult, "trun", "on");
         }
         char *out = cJSON_Print(root);
         if (esp_mqtt_client_publish(config->client, TOPIC_TRUN_SET, out, strlen(out), 0, 0) == ESP_OK)

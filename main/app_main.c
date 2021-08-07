@@ -12,18 +12,20 @@
 
 static const char *TAG = "main";
 Configify_t config;
-void objMqttCallback(Configify_t *config,int level, Stringify_t *data, int len)
+void objMqttCallback(Configify_t *config, int level, Stringify_t *data, int len)
 {
     switch (level)
     {
     case EVENT_TRUN_LEVEL:
         if (strcmp((char *)data, "on") == 0)
         {
-            OutifySetting(IO00, 0);
+            ESP_LOGI(TAG, "trun on");
+            OutifySetting(IO00, 1);
         }
         else if (strcmp((char *)data, "off") == 0)
         {
-            OutifySetting(IO00, 1);
+            ESP_LOGI(TAG, "trun off");
+            OutifySetting(IO00, 0);
         }
         break;
     case EVENT_RF433_LEVEL:
@@ -36,7 +38,7 @@ void objMqttCallback(Configify_t *config,int level, Stringify_t *data, int len)
         break;
     }
 }
-void key_click_handler(Configify_t *config, uint8_t event)
+void key_click_handler(Configify_t *config, Integerify_t event)
 {
     switch (event)
     {
@@ -64,7 +66,8 @@ void objWifiCallback(Configify_t *config, objRouteId_t id)
     switch (id)
     {
     case ROUTE_STA_GOT_IP:
-        if(esp_mqtt_client_start(config->client)!=ESP_OK){
+        if (esp_mqtt_client_start(config->client) != ESP_OK)
+        {
             vTaskDelay(3000 / portTICK_PERIOD_MS);
             esp_restart();
         }
@@ -88,7 +91,7 @@ void app_main()
     objTimerCreate(&config);
     OutifyInit(IO00);
 
-    objQueueInit(&config,objMqttCallback);
+    objQueueInit(&config, objMqttCallback);
     objClickInit(&config, IO02, key_click_handler);
 
     objWifiStart(&config, objWifiCallback);

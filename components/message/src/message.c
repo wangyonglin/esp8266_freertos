@@ -40,15 +40,13 @@ esp_err_t objMessageTrun(objMessage_t *message)
     }
     if (strcmp(trun->valuestring, "on") == 0)
     {
-        ESP_LOGI(TAG, "trun on");
         message->trun = On;
-        return err;
+        return ESP_OK;
     }
     else if (strcmp(trun->valuestring, "off") == 0)
     {
-        ESP_LOGI(TAG, "trun off");
         message->trun = Off;
-        return err;
+        return ESP_OK;
     }
     cJSON_Delete(trun);
     cJSON_Delete(result);

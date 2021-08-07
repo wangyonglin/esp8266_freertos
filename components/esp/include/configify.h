@@ -5,7 +5,7 @@
 #include <uartify.h>
 #include <timerify.h>
 #include <mqtt_client.h>
-typedef void (*ClickCallback_t)(Configify_t *config, uint8_t event);
+typedef void (*ClickCallback_t)(Configify_t *config, Integerify_t event);
 typedef void (*WifiCallback_t)(Configify_t *config, objRouteId_t id);
 typedef void (*MqttCallback_t)(Configify_t *config, int level, Stringify_t *data, int len);
 struct Configify
